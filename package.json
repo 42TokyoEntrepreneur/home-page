@@ -10,6 +10,8 @@
     "tailwindcss": "^3.4.15"
   },
   "scripts": {
-    "build:css": "yarn tailwindcss -i ./assets/css/tailwind.css -o ./static/css/tailwind.css --watch"
+    "install-yarn": "npm install -g yarn",
+    "build:css": "yarn tailwindcss -i ./assets/css/tailwind.css -o ./static/css/tailwind.css",
+    "build": "npm run install-yarn && yarn install && npm run build:css && hugo"
   }
 }
