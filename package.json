@@ -13,5 +13,8 @@
     "install-yarn": "npm install -g yarn",
     "build:css": "yarn tailwindcss -i ./assets/css/tailwind.css -o ./static/css/tailwind.css",
     "build": "npm run install-yarn && yarn install && npm run build:css && hugo"
+  },
+  "devDependencies": {
+    "daisyui": "^4.12.14"
   }
 }

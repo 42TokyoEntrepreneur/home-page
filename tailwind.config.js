@@ -2,10 +2,14 @@ module.exports = {
   content: [
     "./layouts/**/*.html",
     "./content/**/*.md",
-    "./themes/startup-knowledge-theme/**/*.html",
+    "./themes/42-theme/**/*.html",
+    "./src/**/*.{html,js}",
   ],
   theme: {
     extend: {},
   },
-  plugins: [],
+  daisyui: {
+    themes: ["forest"],
+  },
+  plugins: [require("daisyui")],
 };

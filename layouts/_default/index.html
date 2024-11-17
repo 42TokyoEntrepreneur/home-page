@@ -3,10 +3,62 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Knowledge Site</title>
+    <title>42 起業部公式サイト</title>
     <link rel="stylesheet" href="/css/tailwind.css" />
+    <script src="/scripts/main.js" type="module" defer></script>
   </head>
-  <body class="text-center bg-gray-100">
-    <h1 class="text-3xl font-bold text-blue-500">42 起業部サイト</h1>
+  <body class="bg-base-100 text-base-content">
+    <!-- Include Header -->
+    {{ partial "header.html" . }}
+
+    <!-- Hero Section -->
+    <div class="relative min-h-screen hero bg-base-200">
+      <!-- Add the hero background -->
+      {{ partial "hero-background.html" . }}
+
+      <div class="text-center hero-content">
+        <div class="max-w-lg">
+          <h1 class="text-5xl font-bold">42Tokyo <wbr /> 起業部</h1>
+          <p class="py-6">
+            いい感じのキャッチコピー。<br />
+            いい感じのキャッチコピー<wbr />いい感じのキャッチコピー。
+          </p>
+          <a href="#about" class="btn btn-primary">もっと知る</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div id="about" class="container px-4 py-16 mx-auto">
+      <h2 class="mb-10 text-4xl font-bold text-center">私たちについて</h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div>
+          <h3 class="text-2xl font-semibold">ビジョン</h3>
+          <p class="mt-4">いい感じのビジョン</p>
+        </div>
+        <div>
+          <h3 class="text-2xl font-semibold">活動内容</h3>
+          <p class="mt-4">いい感じの活動内容</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="py-16 bg-base-200">
+      <div class="container mx-auto text-center">
+        <h2 class="mb-6 text-4xl font-bold">お問い合わせ</h2>
+        <p class="mb-6">
+          起業部に関するご質問やご相談は、お気軽にお問い合わせください。
+        </p>
+        <a
+          href="mailto:42tokyo.entrepreneur@gmail.com"
+          class="btn btn-secondary"
+          >メールでお問い合わせ</a
+        >
+      </div>
+    </div>
+
+    <!-- Include Footer -->
+    {{ partial "footer.html" . }}
   </body>
 </html>
