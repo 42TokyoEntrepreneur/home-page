@@ -63,8 +63,13 @@ jobs:
 
       - name: Commit and Push changes
         run: |
-          git add .
-          git commit -m "Update project content"
-          git push
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "Changes detected. Committing..."
+            git add .
+            git commit -m "Update project content"
+            git push
+          else
+            echo "No changes to commit."
+          fi
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
