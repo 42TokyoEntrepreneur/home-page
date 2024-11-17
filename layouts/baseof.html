@@ -1,1 +1,3 @@
 <link rel="stylesheet" href="/css/tailwind.css" />
+{{ $mainJS := resources.Get "script/main.js" | js.Build }}
+<script src="{{ $mainJS.RelPermalink }}" type="module" defer></script>
