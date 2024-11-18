@@ -1,4 +1,5 @@
-/script/*
-  Content-Type: application/javascript
 /*
   Strict-Transport-Security: max-age=0
+
+/script/*
+  Content-Type: application/javascript
