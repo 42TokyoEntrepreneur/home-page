@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    {{ partial "head.html" . }}
+    <title>{{ .Title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/tailwind.css" />
+  </head>
+  <body class="bg-base-100 text-base-content">
+    {{ partial "header.html" . }}
+
+    <main class="container py-8 mx-auto">
+      <h1 class="text-4xl font-bold text-center">{{ .Title }}</h1>
+      <div class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2 lg:grid-cols-3">
+        {{ range .Pages }}
+        <div class="shadow-lg card bg-base-200">
+          {{ $imageURL := .Params.image }} {{ $image := resources.GetRemote
+          $imageURL }} {{ if and $imageURL (not (eq $image nil)) }}
+          <figure class="relative h-48 bg-gray-300">
+            <img
+              src="{{ $image.Permalink }}"
+              alt="{{ .Title }}"
+              class="object-cover w-full h-full"
+            />
+          </figure>
+          {{ end }}
+          <div class="card-body">
+            <h2 class="card-title">{{ .Title }}</h2>
+            <p>{{ .Params.description | default "説明がありません" }}</p>
+            <div class="justify-end card-actions">
+              <a href="{{ .RelPermalink }}" class="btn btn-primary"
+                >詳細を見る</a
+              >
+            </div>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </main>
+    {{ partial "footer.html" . }}
+  </body>
+</html>

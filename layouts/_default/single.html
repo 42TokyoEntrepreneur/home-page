@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="jp">
+  <head>
+    {{ partial "head.html" . }}
+    <title>{{ .Title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/tailwind.css" />
+  </head>
+  <body class="w-full bg-base-100 text-base-content">
+    {{ partial "header.html" . }}
+
+    <main class="px-4 py-8 mx-auto min-w-96">
+      <h1 class="text-4xl font-bold">{{ .Title }}</h1>
+      <article class="prose max-w-none">{{ .Content }}</article>
+    </main>
+
+    {{ partial "footer.html" . }}
+  </body>
+</html>

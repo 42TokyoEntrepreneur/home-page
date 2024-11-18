@@ -1,3 +1,12 @@
-baseURL = 'https://example.org/'
-languageCode = 'en-us'
-title = 'My New Hugo Site'
+baseURL = 'https://entrepreneur.42tokyo.jp/'
+languageCode = "ja"
+title = "42 起業部公式サイト"
+theme = "42-theme"
+
+[params]
+  description = "42 起業部の公式サイトです。"
+  author = "42 起業部"
+  dateFormat = "2024-11-01"
+
+[permalinks]
+project = "/project/:sections/:slug/"
