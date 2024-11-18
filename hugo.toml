@@ -10,3 +10,8 @@ theme = "42-theme"
 
 [permalinks]
 project = "/project/:sections/:slug/"
+
+[security]
+  [security.remote]
+    ignoreCertErrors = ["*"]
+
