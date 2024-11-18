@@ -11,40 +11,80 @@ h1 {
   font-size: 2.25rem;
   font-weight: 700;
 }
+
 h2 {
   font-size: 1.875rem;
   font-weight: 700;
 }
+
 h3 {
   font-size: 1.5rem;
   font-weight: 600;
 }
+
 h4 {
   font-size: 1.25rem;
   font-weight: 600;
 }
+
 h5 {
   font-size: 1rem;
   font-weight: 600;
 }
+
 h6 {
   font-size: 0.875rem;
   font-weight: 600;
 }
+
 ul {
   list-style-type: disc;
+  padding-left: 1.5rem;
 }
+
 ol {
   list-style-type: decimal;
   padding-left: 1.5rem;
 }
+
 strong {
   font-weight: bold;
 }
+
 em {
   font-style: italic;
 }
+
 a {
-  color: #007bff;
+  color: #36cfe7;
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+@layer utilities {
+  .page-specific h1 {
+    @apply mb-4 !important;
+  }
+  .page-specific h2 {
+    @apply mt-8 mb-4 !important;
+  }
+  .page-specific h3 {
+    @apply mt-6 mb-3 !important;
+  }
+  .page-specific h4 {
+    @apply mt-5 mb-2 !important;
+  }
+  .page-specific h5 {
+    @apply mt-4 mb-2 !important;
+  }
+  .page-specific h6 {
+    @apply mt-3 mb-2 !important;
+  }
+  .page-specific ul,
+  .page-specific ol {
+    @apply mt-2 mb-4 !important;
+  }
 }
