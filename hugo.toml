@@ -1,12 +1,12 @@
 baseURL = "https://entrepreneur.42tokyo.jp/"
 languageCode = "ja"
 defaultContentLanguage = "ja"
-title = "42 起業部公式サイト"
+title = "42 Tokyo 起業部公式サイト"
 theme = "42-theme"
 
 [params]
-  description = "42 起業部の公式サイトです。"
-  author = "42 起業部"
+  description = "42 Tokyo 起業部の公式サイトです。"
+  author = "42 Tokyo 起業部"
   dateFormat = "2006-01-02"
 
 [permalinks]

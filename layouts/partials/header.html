@@ -3,12 +3,14 @@
   class="border-gray-600 border-opacity-0 border-b-[1px] fixed top-0 left-0 z-10 w-full transition-all duration-300 shadow-lg navbar {{ if .Params.transparentHeader }}bg-transparent opacity-100{{ else }}bg-base-100 opacity-90 border-opacity-100{{ end }}"
 >
   <div class="navbar-start">
-    <a href="/" class="text-xl normal-case btn btn-ghost">42 Tokyo 起業部</a>
+    <a href="/" class="text-xl font-bold normal-case btn btn-ghost"
+      >42 Tokyo 起業部</a
+    >
   </div>
 
   <div class="hidden navbar-center lg:navbar-end lg:flex">
     <ul class="px-1 menu menu-horizontal">
-      <li><a href="/project" class="text-white">プロジェクト</a></li>
+      <li><a href="/project" class="font-bold text-white">プロジェクト</a></li>
     </ul>
   </div>
 
@@ -35,7 +37,9 @@
         class="z-10 p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
       >
         <li>
-          <a href="/project" class="text-base text-white">プロジェクト</a>
+          <a href="/project" class="text-base font-bold text-white"
+            >プロジェクト</a
+          >
         </li>
       </ul>
     </div>
