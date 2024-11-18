@@ -77,7 +77,7 @@ int main(void)
 
 ## 画像
 
-![代替テキスト](https://prcdn.freetls.fastly.net/release_image/51804/25/51804-25-d251490f43d586ad8e7d358d28c953bd-1500x817.jpg?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260)
+![代替テキスト](https://camo.githubusercontent.com/85552f0ef9b035b3bc524424281bff03adce9a6151c82e332cd88540650e9462/68747470733a2f2f7777772e736d616c6c2d656e67696e6565722e6e65742f6c6f676f2e77656270?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260)
 
 ## テーブル
 
