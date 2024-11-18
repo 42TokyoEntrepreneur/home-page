@@ -10,43 +10,63 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Hugoのサイトをチェックアウト
       - name: Check out Hugo repository
         uses: actions/checkout@v3
 
+      # 2. GitHub APIを使用してプロジェクトリストを取得
       - name: Fetch Project Repositories
         id: fetch_projects
         env:
           GITHUB_PAT: ${{ secrets.PAT }}
         run: |
+          echo "Starting to fetch repositories from organization"
           api_response=$(curl -s -H "Authorization: token $GITHUB_PAT" \
                           -H "Accept: application/vnd.github+json" \
-                          https://api.github.com/orgs/42TokyoEntrepreneur/repos?per_page=100)
+                          https://api.github.com/orgs/<組織名>/repos?per_page=100)
 
-          repos=$(echo "$api_response" | jq -r '.[] | select(.name | contains("project")) | .name' | tr '\n' ' ')
-          echo "repos=$repos" >> $GITHUB_OUTPUT
+          echo "API Response:"
+          echo "$api_response"
 
+          if echo "$api_response" | jq empty; then
+            repos=$(echo "$api_response" | jq -r '.[] | select(.name | contains("project")) | .name')
+            echo "Fetched repositories: $repos"
+            echo "::set-output name=repos::$repos"
+          else
+            echo "Failed to parse API response"
+            exit 1
+          fi
+
+      # 3. 各プロジェクトのMarkdownをコピー
       - name: Clone and Copy Markdown files
         env:
           GITHUB_PAT: ${{ secrets.PAT }}
         run: |
+          echo "Cloning and processing repositories"
           for repo in ${{ steps.fetch_projects.outputs.repos }}; do
-            git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/42TokyoEntrepreneur/$repo.git /tmp/$repo || continue
+            echo "Processing repository: $repo"
+            git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/<組織名>/$repo.git /tmp/$repo || {
+              echo "Failed to clone $repo";
+              continue;
+            }
             if [ -d /tmp/$repo/public ]; then
+              echo "Found 'public' directory in $repo"
               mkdir -p content/project/$repo
-              rsync -u /tmp/$repo/public/*.md content/project/$repo/ || true
+              cp -v /tmp/$repo/public/*.md content/project/$repo/ || echo "No Markdown files found in $repo"
+            else
+              echo "No 'public' directory found in $repo"
             fi
           done
 
+      # 4. Hugoコンテンツの変更をコミット
       - name: Commit and Push changes
         run: |
+          echo "Checking for changes to commit"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet; then
-            git add .
-            git commit -m "Update content from project repositories"
-            git push
-          else
-            echo "No changes to commit"
-          fi
+          git add .
+          git status
+          git commit -m "Update content from project repositories" || echo "No changes to commit"
+          git push || echo "Failed to push changes"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
