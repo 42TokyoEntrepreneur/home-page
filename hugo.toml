@@ -12,11 +12,6 @@ theme = "42-theme"
 project = "/project/:sections/:slug/"
 
 [security]
-  [security.remote]
-    ignoreCertErrors = ["42tokyo.jp"]
   [security.http]
-    [security.http.mediaTypes]
-      "image/jpeg" = true
-      "image/png" = true
-      "image/webp" = true
+    mediaTypes = ["image/jpeg", "image/png", "image/svg+xml", "image/vnd.microsoft.icon", "image/x-icon"]
 
