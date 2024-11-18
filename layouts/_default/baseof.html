@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <title>{{ .Title }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/tailwind.css" />
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const searchInput = document.getElementById("search-bar");
+        const cards = document.querySelectorAll(".project-card");
+
+        searchInput.addEventListener("input", function () {
+          const query = searchInput.value.toLowerCase();
+
+          cards.forEach((card) => {
+            const title = card
+              .querySelector(".card-title")
+              .textContent.toLowerCase();
+            const description = card
+              .querySelector("p")
+              .textContent.toLowerCase();
+
+            if (title.includes(query) || description.includes(query)) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body class="mt-16 bg-base-100 text-base-content">
+    {{ partial "header.html" . }}
+
+    <main class="{{ block "main-class" . }}container py-8 mx-auto{{ end }}">
+      {{ block "main" . }}{{ end }}
+    </main>
+
+    {{ partial "footer.html" . }}
+  </body>
+</html>

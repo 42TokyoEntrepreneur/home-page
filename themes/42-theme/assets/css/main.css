@@ -1,8 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html,
-:host {
-  font-family: "a-otf-ud-shin-go-pr6n", "futura-pt", "sans-serif";
-}
