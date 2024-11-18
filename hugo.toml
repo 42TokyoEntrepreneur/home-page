@@ -1,17 +1,23 @@
-baseURL = 'https://home-page-b1m.pages.dev/'
+baseURL = "https://entrepreneur.42tokyo.jp/"
 languageCode = "ja"
+defaultContentLanguage = "ja"
 title = "42 起業部公式サイト"
 theme = "42-theme"
 
 [params]
   description = "42 起業部の公式サイトです。"
   author = "42 起業部"
-  dateFormat = "2024-11-01"
+  dateFormat = "2006-01-02"
 
 [permalinks]
-project = "/project/:sections/:slug/"
+  project = "/project/:sections/:slug/"
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[sitemap]
+  filename = "sitemap.xml"
+  changefreq = "dayly"
+  priority = 0.5
