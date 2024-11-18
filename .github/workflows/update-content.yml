@@ -32,16 +32,22 @@ jobs:
           GITHUB_PAT: ${{ secrets.PAT }}
         run: |
           for repo in ${{ steps.fetch_projects.outputs.repos }}; do
-            echo "Cloning repository: $repo"
+            echo "Processing repository: $repo"
             git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/<組織名>/$repo.git /tmp/$repo || echo "Failed to clone $repo"
+            
             if [ -d /tmp/$repo/public ]; then
-              echo "Copying Markdown files from $repo"
+              echo "Found 'public' directory in $repo"
               mkdir -p content/project/$repo
-              cp /tmp/$repo/public/*.md content/project/$repo/ || echo "No Markdown files found in $repo"
+              cp -v /tmp/$repo/public/*.md content/project/$repo/ || echo "No Markdown files found in $repo"
             else
-              echo "No public directory found in $repo"
+              echo "No 'public' directory found in $repo"
             fi
           done
+
+      - name: Debug Directory Structure
+        run: |
+          echo "Content directory structure after copy:"
+          ls -R content/
 
       # 4. Hugoコンテンツの変更をコミット
       - name: Commit and Push changes
@@ -49,6 +55,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
+          echo "Git status after add:"
           git status
           git commit -m "Update content from project repositories" || echo "No changes to commit"
           git push || echo "Failed to push changes"
