@@ -2,74 +2,55 @@ name: Update Hugo Content
 
 on:
   schedule:
-    - cron: "0 0 * * *"
-  workflow_dispatch:
+    - cron: "0 0 * * *" # 毎日深夜0時に実行
+  workflow_dispatch: # 手動実行も可能
 
 jobs:
   update-content:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Hugoのサイトをチェックアウト
       - name: Check out Hugo repository
         uses: actions/checkout@v3
 
-      - name: Debug API Response
+      # 2. GitHub APIを使用してプロジェクトリストを取得
+      - name: Fetch Project Repositories
+        id: fetch_projects
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_PAT: ${{ secrets.PAT }}
         run: |
-          echo "Fetching API Response..."
-          curl -H "Authorization: Bearer $GH_TOKEN" \
-            https://api.github.com/orgs/42TokyoEntrepreneur/repos > response.json
-          echo "API Response:"
-          cat response.json
+          repos=$(curl -H "Authorization: token $GITHUB_PAT" \
+                  -H "Accept: application/vnd.github+json" \
+                  https://api.github.com/orgs/<組織名>/repos?per_page=100 \
+                  | jq -r '.[] | select(.name | contains("project")) | .name')
+          echo "::set-output name=repos::$repos"
 
-      - name: List repositories with "project" in their name
+      # 3. 各プロジェクトのMarkdownをコピー
+      - name: Clone and Copy Markdown files
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_PAT: ${{ secrets.PAT }}
         run: |
-          echo "Filtering repositories..."
-          curl -H "Authorization: Bearer $GH_TOKEN" \
-            https://api.github.com/orgs/42TokyoEntrepreneur/repos | \
-            jq -r '.[] | select(.name | contains("project")) | .name' > repo_list.txt
-          echo "Repositories found:"
-          cat repo_list.txt
+          for repo in ${{ steps.fetch_projects.outputs.repos }}; do
+            echo "Cloning repository: $repo"
+            git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/<組織名>/$repo.git /tmp/$repo || echo "Failed to clone $repo"
+            if [ -d /tmp/$repo/public ]; then
+              echo "Copying Markdown files from $repo"
+              mkdir -p content/project/$repo
+              cp /tmp/$repo/public/*.md content/project/$repo/ || echo "No Markdown files found in $repo"
+            else
+              echo "No public directory found in $repo"
+            fi
+          done
 
-      - name: Check if repositories found
-        run: |
-          if [ ! -s repo_list.txt ]; then
-            echo "No repositories matching 'project' found. Skipping..."
-            exit 0
-          fi
-
-      - name: Clone and copy Markdown files
-        run: |
-          while read repo; do
-            echo "Processing repository: $repo"
-            git clone https://github.com/42TokyoEntrepreneur/$repo /tmp/$repo || {
-              echo "Failed to clone $repo. Skipping..."
-              continue
-            }
-            mkdir -p content/project/$repo
-            cp /tmp/$repo/public/*.md content/project/$repo/ || {
-              echo "No Markdown files found in $repo. Skipping..."
-              continue
-            }
-          done < repo_list.txt
-
-      - name: Configure Git
+      # 4. Hugoコンテンツの変更をコミット
+      - name: Commit and Push changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Commit and Push changes
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "Changes detected. Committing..."
-            git add .
-            git commit -m "Update project content"
-            git push
-          else
-            echo "No changes to commit."
-          fi
+          git add .
+          git status
+          git commit -m "Update content from project repositories" || echo "No changes to commit"
+          git push || echo "Failed to push changes"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
