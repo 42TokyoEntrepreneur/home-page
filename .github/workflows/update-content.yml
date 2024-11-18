@@ -23,13 +23,13 @@ jobs:
                           https://api.github.com/orgs/42TokyoEntrepreneur/repos?per_page=100)
 
           repos=$(echo "$api_response" | jq -r '.[] | select(.name | contains("project")) | .name')
-          echo "::set-output name=repos::$repos"
+          echo "repos=$repos" >> $GITHUB_OUTPUT
 
       - name: Clone and Copy Markdown files
         env:
           GITHUB_PAT: ${{ secrets.PAT }}
         run: |
-          for repo in ${{ steps.fetch_projects.outputs.repos }}; do
+          for repo in ${{ fromJson(steps.fetch_projects.outputs.repos) }}; do
             git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/42TokyoEntrepreneur/$repo.git /tmp/$repo || continue
             if [ -d /tmp/$repo/public ]; then
               mkdir -p content/project/$repo
