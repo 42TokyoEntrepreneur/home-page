@@ -23,7 +23,7 @@ jobs:
           echo "Starting to fetch repositories from organization"
           api_response=$(curl -s -H "Authorization: token $GITHUB_PAT" \
                           -H "Accept: application/vnd.github+json" \
-                          https://api.github.com/orgs/<組織名>/repos?per_page=100)
+                          https://api.github.com/orgs/42TokyoEntrepreneur/repos?per_page=100)
 
           echo "API Response:"
           echo "$api_response"
@@ -45,7 +45,7 @@ jobs:
           echo "Cloning and processing repositories"
           for repo in ${{ steps.fetch_projects.outputs.repos }}; do
             echo "Processing repository: $repo"
-            git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/<組織名>/$repo.git /tmp/$repo || {
+            git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/42TokyoEntrepreneur/$repo.git /tmp/$repo || {
               echo "Failed to clone $repo";
               continue;
             }
