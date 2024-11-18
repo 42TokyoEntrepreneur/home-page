@@ -12,6 +12,8 @@ theme = "42-theme"
 project = "/project/:sections/:slug/"
 
 [security]
+  [security.remote]
+    ignoreCertErrors = ["42tokyo.jp"]
   [security.http]
     [security.http.mediaTypes]
       "image/jpeg" = true
