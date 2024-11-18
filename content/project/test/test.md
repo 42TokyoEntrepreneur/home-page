@@ -2,7 +2,7 @@
 title: "プロジェクト42"
 description: "プロジェクト42は、チームによるコラボレーションで成功したプロジェクトです。"
 date: 2024-11-10
-image: "https://42tokyo.jp/static/images/img_campus_shinjuku.jpg"
+image: "https://prcdn.freetls.fastly.net/release_image/51804/25/51804-25-d251490f43d586ad8e7d358d28c953bd-1500x817.jpg?format=jpeg&auto=webp&fit=bounds&width=2400&height=1260"
 draft: false
 tags:
   - チームワーク
