@@ -4,6 +4,11 @@
   <div class="w-full md:w-auto">{{ partial "search.html" . }}</div>
 </div>
 
+<!-- Main Content -->
+{{ if .Content }}
+<div class="mt-6 prose">{{ .Content }}</div>
+{{ end }}
+
 <!-- Project Grid -->
 <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3">
   {{ range .Pages }}
