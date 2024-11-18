@@ -12,6 +12,9 @@ theme = "42-theme"
 project = "/project/:sections/:slug/"
 
 [security]
-  [security.remote]
-    ignoreCertErrors = ["*"]
+  [security.http]
+    [security.http.mediaTypes]
+      "image/jpeg" = true
+      "image/png" = true
+      "image/webp" = true
 
