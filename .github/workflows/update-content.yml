@@ -22,7 +22,7 @@ jobs:
         run: |
           repos=$(curl -H "Authorization: token $GITHUB_PAT" \
                   -H "Accept: application/vnd.github+json" \
-                  https://api.github.com/orgs/<組織名>/repos?per_page=100 \
+                  https://api.github.com/orgs/42TokyoEntrepreneur/repos?per_page=100 \
                   | jq -r '.[] | select(.name | contains("project")) | .name')
           echo "::set-output name=repos::$repos"
 
@@ -32,22 +32,16 @@ jobs:
           GITHUB_PAT: ${{ secrets.PAT }}
         run: |
           for repo in ${{ steps.fetch_projects.outputs.repos }}; do
-            echo "Processing repository: $repo"
-            git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/<組織名>/$repo.git /tmp/$repo || echo "Failed to clone $repo"
-            
+            echo "Cloning repository: $repo"
+            git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/42TokyoEntrepreneur/$repo.git /tmp/$repo || echo "Failed to clone $repo"
             if [ -d /tmp/$repo/public ]; then
-              echo "Found 'public' directory in $repo"
+              echo "Copying Markdown files from $repo"
               mkdir -p content/project/$repo
-              cp -v /tmp/$repo/public/*.md content/project/$repo/ || echo "No Markdown files found in $repo"
+              cp /tmp/$repo/public/*.md content/project/$repo/ || echo "No Markdown files found in $repo"
             else
-              echo "No 'public' directory found in $repo"
+              echo "No public directory found in $repo"
             fi
           done
-
-      - name: Debug Directory Structure
-        run: |
-          echo "Content directory structure after copy:"
-          ls -R content/
 
       # 4. Hugoコンテンツの変更をコミット
       - name: Commit and Push changes
@@ -55,7 +49,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          echo "Git status after add:"
           git status
           git commit -m "Update content from project repositories" || echo "No changes to commit"
           git push || echo "Failed to push changes"
