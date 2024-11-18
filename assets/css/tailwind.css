@@ -60,10 +60,6 @@ a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 @layer utilities {
   .page-specific h1 {
     @apply mb-4 !important;
@@ -86,5 +82,8 @@ a:hover {
   .page-specific ul,
   .page-specific ol {
     @apply mt-2 mb-4 !important;
+  }
+  .page-specific a:hover {
+    text-decoration: underline;
   }
 }
