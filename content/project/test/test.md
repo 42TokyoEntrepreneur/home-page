@@ -62,6 +62,15 @@ _斜体_
 
 ### 複数行コードブロック
 
+```c
+#include <stdio.h>
+
+int main(void)
+{
+    printf("%s",111);
+}
+```
+
 ## リンク
 
 [リンクテキスト](https://google.com)
