@@ -10,3 +10,8 @@ theme = "42-theme"
 
 [permalinks]
 project = "/project/:sections/:slug/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

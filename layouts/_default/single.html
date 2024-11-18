@@ -6,12 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/tailwind.css" />
   </head>
-  <body class="w-full bg-base-100 text-base-content">
+  <body class="w-full mt-12 bg-base-100 text-base-content">
     {{ partial "header.html" . }}
 
-    <main class="px-4 py-8 mx-auto min-w-96">
-      <h1 class="text-4xl font-bold">{{ .Title }}</h1>
-      <article class="prose max-w-none">{{ .Content }}</article>
+    <main class="max-w-3xl px-4 py-8 mx-auto">
+      <h1 class="mb-4 text-4xl font-bold">{{ .Title }}</h1>
+      <article
+        class="prose max-w-none prose-a:text-primary prose-code:bg-base-200 prose-code:rounded prose-code:px-1 prose-code:py-0.5"
+      >
+        {{ .Content }}
+      </article>
     </main>
 
     {{ partial "footer.html" . }}

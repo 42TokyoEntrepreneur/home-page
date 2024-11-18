@@ -1,13 +1,14 @@
-<header class="shadow-lg navbar bg-base-100">
+<header
+  id="navbar"
+  class="border-gray-600 border-opacity-0 border-b-[1px] fixed top-0 left-0 z-10 w-full transition-all duration-300 shadow-lg navbar {{ if .Params.transparentHeader }}bg-transparent opacity-100{{ else }}bg-base-100 opacity-90 border-opacity-100{{ end }}"
+>
   <div class="navbar-start">
-    <a href="/" class="text-xl normal-case btn btn-ghost">42 起業部</a>
+    <a href="/" class="text-xl normal-case btn btn-ghost">42 Tokyo 起業部</a>
   </div>
 
   <div class="hidden navbar-center lg:navbar-end lg:flex">
     <ul class="px-1 menu menu-horizontal">
-      <li><a href="#about">私たちについて</a></li>
-      <li><a href="/project">プロジェクト</a></li>
-      <li><a href="#contact">お問い合わせ</a></li>
+      <li><a href="/project" class="text-white">プロジェクト</a></li>
     </ul>
   </div>
 
@@ -33,10 +34,42 @@
         tabindex="0"
         class="z-10 p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
       >
-        <li><a href="#about">私たちについて</a></li>
-        <li><a href="/project">プロジェクト</a></li>
-        <li><a href="#contact">お問い合わせ</a></li>
+        <li>
+          <a href="/project" class="text-base text-white">プロジェクト</a>
+        </li>
       </ul>
     </div>
   </div>
 </header>
+
+<script>
+  document.addEventListener("scroll", () => {
+    const navbar = document.getElementById("navbar");
+    const isTransparent = navbar.classList.contains("bg-transparent");
+    const isBelowThreshold = window.scrollY > 50;
+    if (isBelowThreshold && isTransparent) {
+      navbar.classList.remove(
+        "bg-transparent",
+        "opacity-100",
+        "border-opacity-0"
+      );
+      navbar.classList.add("bg-base-100", "opacity-90", "border-opacity-100");
+    } else if (
+      window.scrollY <= 50 &&
+      !isTransparent &&
+      navbar.dataset.transparent === "true"
+    ) {
+      navbar.classList.remove(
+        "bg-base-100",
+        "opacity-90",
+        "border-opacity-100"
+      );
+      navbar.classList.add("bg-transparent", "opacity-100", "border-opacity-0");
+    }
+  });
+  document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.getElementById("navbar");
+    navbar.dataset.transparent =
+      "{{ if .Params.transparentHeader }}true{{ else }}false{{ end }}";
+  });
+</script>
