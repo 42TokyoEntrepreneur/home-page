@@ -1,0 +1,32 @@
+- id: siteTitle
+  translation: "42 Tokyo 起業部"
+- id: projects
+  translation: "プロジェクト"
+- id: tags
+  translation: "タグ"
+- id: categories
+  translation: "カテゴリ"
+- id: searchPlaceholder
+  translation: "検索..."
+- id: heroTitle
+  translation: "42Tokyo 起業部"
+- id: heroSubtitle
+  translation: "Share your vision, grow together<br />Start your enterprise with us!<wbr />"
+- id: learnMore
+  translation: "もっと知る"
+- id: aboutUs
+  translation: "私たちについて"
+- id: visionTitle
+  translation: "ビジョン"
+- id: visionContent
+  translation: "いい感じのビジョン"
+- id: activitiesTitle
+  translation: "活動内容"
+- id: activitiesContent
+  translation: "いい感じの活動内容"
+- id: contactUs
+  translation: "お問い合わせ"
+- id: contactMessage
+  translation: "起業部に関するご質問やご相談は、お気軽にお問い合わせください。"
+- id: contactButton
+  translation: "メールでお問い合わせ"

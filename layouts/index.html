@@ -1,31 +1,5 @@
-<!DOCTYPE html>
-<html lang="ja">
-  <head>
-    <title>公開準備中</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/tailwind.css" />
-  </head>
-  <body
-    class="flex items-center justify-center h-screen bg-base-100 text-base-content"
-  >
-    <div class="text-center">
-      <h1 class="mb-6 text-4xl font-bold">サイトは現在準備中です</h1>
-      <p class="mb-6 text-lg">
-        現在、サイトの公開準備を進めております。もう少々お待ちください。
-      </p>
-    </div>
-  </body>
-</html>
-
-<!--
-
-　 ∧＿∧　　　／￣￣￣￣￣￣￣
-　（ ´･ω･)　＜ 　公開は待っててね
-　（つ旦と）　　 ＼＿＿＿＿＿＿＿
-　 と＿）＿）
-
-<!DOCTYPE html>
-<html lang="jp">
+<!doctype html>
+<html lang="{{ .Site.Language.Lang }}">
   <head>
     {{ partial "font.html" . }}
     <meta charset="UTF-8" />
@@ -47,7 +21,7 @@
 
       gtag("config", "G-XQZB5S637W");
     </script>
-    <title>42 起業部公式サイト</title>
+    <title>{{ i18n "siteTitle" }}</title>
     <link rel="stylesheet" href="/css/tailwind.css" />
     <script src="/scripts/main.js" type="module" defer></script>
   </head>
@@ -59,40 +33,35 @@
 
       <div class="text-center hero-content">
         <div class="max-w-lg">
-          <h1 class="text-5xl font-bold">42Tokyo <wbr /> 起業部</h1>
-          <p class="py-6">
-            Share your vision, grow together<br />
-            Start your enterprise with us!<wbr />
-          </p>
-          <a href="#about" class="btn btn-primary">もっと知る</a>
+          <h1 class="text-5xl font-bold">{{ i18n "heroTitle" }}</h1>
+          <p class="py-6">{{ i18n "heroSubtitle" | safeHTML }}</p>
+          <a href="#about" class="btn btn-primary">{{ i18n "learnMore" }}</a>
         </div>
       </div>
     </div>
 
     <div id="about" class="container px-4 py-16 mx-auto">
-      <h2 class="mb-10 text-4xl font-bold text-center">私たちについて</h2>
+      <h2 class="mb-10 text-4xl font-bold text-center">{{ i18n "aboutUs" }}</h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
         <div>
-          <h3 class="text-2xl font-semibold">ビジョン</h3>
-          <p class="mt-4">いい感じのビジョン</p>
+          <h3 class="text-2xl font-semibold">{{ i18n "visionTitle" }}</h3>
+          <p class="mt-4">{{ i18n "visionContent" }}</p>
         </div>
         <div>
-          <h3 class="text-2xl font-semibold">活動内容</h3>
-          <p class="mt-4">いい感じの活動内容</p>
+          <h3 class="text-2xl font-semibold">{{ i18n "activitiesTitle" }}</h3>
+          <p class="mt-4">{{ i18n "activitiesContent" }}</p>
         </div>
       </div>
     </div>
 
     <div id="contact" class="py-16 bg-base-200">
       <div class="container mx-auto text-center">
-        <h2 class="mb-6 text-4xl font-bold">お問い合わせ</h2>
-        <p class="mb-6">
-          起業部に関するご質問やご相談は、お気軽にお問い合わせください。
-        </p>
+        <h2 class="mb-6 text-4xl font-bold">{{ i18n "contactUs" }}</h2>
+        <p class="mb-6">{{ i18n "contactMessage" }}</p>
         <a
           href="mailto:42tokyo.entrepreneur@gmail.com"
           class="btn btn-secondary"
-          >メールでお問い合わせ</a
+          >{{ i18n "contactButton" }}</a
         >
       </div>
     </div>
@@ -100,5 +69,3 @@
     {{ partial "footer.html" . }}
   </body>
 </html>
-
--->

@@ -1,0 +1,32 @@
+- id: siteTitle
+  translation: "42 Tokyo Entrepreneur"
+- id: projects
+  translation: "Projects"
+- id: tags
+  translation: "Tags"
+- id: categories
+  translation: "Categories"
+- id: searchPlaceholder
+  translation: "Search..."
+- id: heroTitle
+  translation: "42Tokyo Entrepreneur"
+- id: heroSubtitle
+  translation: "Share your vision, grow together<br />Start your enterprise with us!<wbr />"
+- id: learnMore
+  translation: "Learn More"
+- id: aboutUs
+  translation: "About Us"
+- id: visionTitle
+  translation: "Our Vision"
+- id: visionContent
+  translation: "An amazing vision statement goes here."
+- id: activitiesTitle
+  translation: "What We Do"
+- id: activitiesContent
+  translation: "Details about our activities go here."
+- id: contactUs
+  translation: "Contact Us"
+- id: contactMessage
+  translation: "Feel free to reach out with questions or collaborations."
+- id: contactButton
+  translation: "Email Us"

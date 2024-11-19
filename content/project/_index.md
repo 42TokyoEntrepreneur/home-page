@@ -1,5 +1,6 @@
 ---
 title: "プロジェクト一覧"
+en.title: "Project List"
 description: "42Tokyo起業部が取り組んだプロジェクトの一覧ページ"
 keywords:
   [
