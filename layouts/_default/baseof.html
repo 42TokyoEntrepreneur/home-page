@@ -4,6 +4,7 @@
     <title>{{ .Title }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/css/tailwind.css" />
+    {{ partial "switch-language.html" . }}
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const searchInput = document.getElementById("search-bar");

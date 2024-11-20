@@ -11,10 +11,14 @@
   },
   "scripts": {
     "install-yarn": "npm install -g yarn",
+    "format": "prettier --write \"{content,layouts,static}/**/*.{md,html,css,js,yml,toml}\"",
     "build:css": "yarn tailwindcss -i ./assets/css/tailwind.css -o ./static/css/tailwind.css",
     "build": "npm run install-yarn && yarn install && npm run build:css && hugo"
   },
   "devDependencies": {
-    "daisyui": "^4.12.14"
+    "daisyui": "^4.12.14",
+    "prettier": "^3.3.3",
+    "prettier-plugin-go-template": "^0.0.15",
+    "prettier-plugin-tailwindcss": "^0.6.9"
   }
 }
