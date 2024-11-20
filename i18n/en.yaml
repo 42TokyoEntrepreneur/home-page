@@ -6,6 +6,8 @@
   translation: "Tags"
 - id: categories
   translation: "Categories"
+- id: events
+  translation: "Events"
 - id: searchPlaceholder
   translation: "Search..."
 - id: heroTitle

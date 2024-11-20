@@ -6,6 +6,8 @@
   translation: "タグ"
 - id: categories
   translation: "カテゴリ"
+- id: events
+  translation: "イベント"
 - id: searchPlaceholder
   translation: "検索..."
 - id: heroTitle

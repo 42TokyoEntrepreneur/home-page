@@ -7,6 +7,8 @@
 - id: categories
   translation: "Catégories"
 - id: searchPlaceholder
+- id: events
+  translation: "Événements"
   translation: "Rechercher..."
 - id: heroTitle
   translation: "42Tokyo Entrepreneur"

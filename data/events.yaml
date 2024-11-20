@@ -1,7 +1,8 @@
-events:
-  - date: 2024-12-01
-    name: "Startup Workshop"
-  - date: 2024-12-10
-    name: "Community Meetup"
-  - date: 2024-12-25
-    name: "Holiday Celebration"
+- name: "42 Tokyo Hackathon"
+  date: "2024-11-30"
+  location: "42 Tokyo Campus"
+  url: "https://example.com/hackathon"
+- name: "Tailwind CSS Workshop"
+  date: "2024-12-15"
+  location: "Online"
+  url: ""
