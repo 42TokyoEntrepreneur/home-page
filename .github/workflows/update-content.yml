@@ -29,8 +29,8 @@ jobs:
           if echo "$api_response" | jq empty; then
             repos=$(echo "$api_response" | jq -r '.[] | select(.name | contains("project")) | .name')
             echo "Fetched repositories: $repos"
-            echo "$repos" >> $GITHUB_OUTPUT
-            echo "repos=$repos" >> $GITHUB_OUTPUT
+            # リポジトリ名をスペース区切りで保存
+            echo "repos=$(echo $repos | tr '\n' ' ')" >> $GITHUB_OUTPUT
           else
             echo "Failed to parse API response"
             exit 1
@@ -42,7 +42,7 @@ jobs:
           GITHUB_PAT: ${{ secrets.PAT }}
         run: |
           echo "Cloning and processing repositories"
-          repos=$(cat $GITHUB_OUTPUT | grep "^repos=" | cut -d'=' -f2-)
+          repos="${{ steps.fetch_projects.outputs.repos }}"
           for repo in $repos; do
             echo "Processing repository: $repo"
             git clone https://$GITHUB_ACTOR:${{ secrets.PAT }}@github.com/42TokyoEntrepreneur/$repo.git /tmp/$repo || {
