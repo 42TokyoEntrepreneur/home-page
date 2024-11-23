@@ -1,7 +1,7 @@
 members:
-  - name: 'John Doe'
-    role: 'Developer'
-    bio: 'Open source enthusiast.'
-    github: 'https://github.com/johndoe'
-    twitter: 'https://twitter.com/johndoe'
-    image: 'johndoe.jpg'
+  - name: 'Wakamiya Yuma'
+    role: '事務局'
+    bio: '事務でーす！'
+    image: 'https://avatars.githubusercontent.com/u/139568922?v=4'
+    github: 'https://github.com/small-engineer'
+    twitter: 'https://x.com/WakamiyaYuma'

@@ -1,34 +1,36 @@
 - id: siteTitle
-  translation: "42 Tokyo Entrepreneur"
+  translation: '42 Tokyo Entrepreneur'
 - id: projects
-  translation: "Projects"
+  translation: 'Projects'
 - id: tags
-  translation: "Tags"
+  translation: 'Tags'
 - id: categories
-  translation: "Categories"
+  translation: 'Categories'
 - id: events
-  translation: "Events"
+  translation: 'Events'
 - id: searchPlaceholder
-  translation: "Search..."
+  translation: 'Search...'
 - id: heroTitle
-  translation: "42Tokyo Entrepreneur"
+  translation: '42Tokyo Entrepreneur'
 - id: heroSubtitle
-  translation: "Share your vision, grow together<br />Start your enterprise with us!<wbr />"
+  translation: 'Share your vision, grow together<br />Start your enterprise with us!<wbr />'
 - id: learnMore
-  translation: "Learn More"
+  translation: 'Learn More'
 - id: aboutUs
-  translation: "About Us"
+  translation: 'About Us'
 - id: visionTitle
-  translation: "Our Vision"
+  translation: 'Vision'
 - id: visionContent
-  translation: "An amazing vision statement goes here."
-- id: activitiesTitle
-  translation: "What We Do"
-- id: activitiesContent
-  translation: "Details about our activities go here."
+  translation: 'The most geeky entrepreneurial community in Japan'
+- id: missionTitle
+  translation: 'Mission'
+- id: missionContent
+  translation: 'A place to create leading technology startups in Japan'
 - id: contactUs
-  translation: "Contact Us"
+  translation: 'Contact Us'
 - id: contactMessage
-  translation: "Feel free to reach out with questions or collaborations."
+  translation: 'Feel free to reach out with questions or collaborations.'
 - id: contactButton
-  translation: "Email Us"
+  translation: 'Email Us'
+- id: members
+  translation: 'Members'
