@@ -1,0 +1,7 @@
+members:
+  - name: 'John Doe'
+    role: 'Developer'
+    bio: 'Open source enthusiast.'
+    github: 'https://github.com/johndoe'
+    twitter: 'https://twitter.com/johndoe'
+    image: 'johndoe.jpg'
