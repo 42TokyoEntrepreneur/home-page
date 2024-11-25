@@ -160,41 +160,52 @@
     }
 
     // フォーム送信をハンドルする関数
-    function handleFormSubmit(event, url, formType) {
+    async function handleFormSubmit(event, url, formType) {
       event.preventDefault();
       const form = event.target;
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
+      // TrustTokenを追加
+      const trustTokenElement = document.querySelector('.cf-turnstile input[name="cf-turnstile-response"]');
+      if (trustTokenElement && trustTokenElement.value) {
+        data['trustToken'] = trustTokenElement.value;
+      } else {
+        alert('{{ i18n "trustTokenError" }}'); // エラーメッセージ
+        return;
+      }
+
       // JSON形式でデータを送信
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      })
-      .then(response => {
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
         if (response.ok) {
           alert('{{ i18n "formSubmitted" }}');
           form.reset();
         } else {
+          const errorData = await response.json();
+          console.error('Error Response:', errorData);
           alert('{{ i18n "formSubmitError" }}');
         }
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error:', error);
         alert('{{ i18n "formSubmitError" }}');
-      });
+      }
     }
 
     // 外向けフォームの送信イベントをリッスン
-    document.getElementById('externalFormElement').addEventListener('submit', function(event) {
+    document.getElementById('externalFormElement').addEventListener('submit', function (event) {
       handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/external-form', 'external');
     });
 
     // ウチ向けフォームの送信イベントをリッスン
-    document.getElementById('internalFormElement').addEventListener('submit', function(event) {
+    document.getElementById('internalFormElement').addEventListener('submit', function (event) {
       handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/internal-form', 'internal');
     });
   </script>
