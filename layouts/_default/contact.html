@@ -145,7 +145,7 @@
 
       const turnstileElement = form.querySelector(".cf-turnstile");
       const trustToken = turnstileElement
-        ? turnstileElement.getAttribute("data-token")
+        ? turnstileElement.getAttribute("data-response")
         : null;
 
       const intraName =
@@ -187,27 +187,27 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-      // 外部フォーム
-      document
-        .getElementById("externalForm")
-        .addEventListener("submit", (event) => {
+      const externalForm = document.getElementById("externalForm");
+      if (externalForm) {
+        externalForm.addEventListener("submit", (event) => {
           event.preventDefault();
           submitForm(
             "externalForm",
-            "https://contact-form-backend.wakamiya626.workers.dev//external",
+            "https://contact-form-backend.wakamiya626.workers.dev/external",
           );
         });
+      }
 
-      // 内部フォーム
-      document
-        .getElementById("internalForm")
-        .addEventListener("submit", (event) => {
+      const internalForm = document.getElementById("internalForm");
+      if (internalForm) {
+        internalForm.addEventListener("submit", (event) => {
           event.preventDefault();
           submitForm(
             "internalForm",
             "https://contact-form-backend.wakamiya626.workers.dev/internal",
           );
         });
+      }
     });
   </script>
   <script
