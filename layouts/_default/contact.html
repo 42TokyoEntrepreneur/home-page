@@ -137,27 +137,78 @@
   </div>
 
   <script>
-    function toggleForm(formType) {
-      const externalForm = document.getElementById("externalForm");
-      const internalForm = document.getElementById("internalForm");
-      const externalTab = document.getElementById("externalFormTab");
-      const internalTab = document.getElementById("internalFormTab");
-      const tabIndicator = document.getElementById("tabIndicator");
+    async function submitForm(formId, endpoint) {
+      const form = document.getElementById(formId);
+      const name = form.querySelector('input[name="name"]').value;
+      const email = form.querySelector('input[name="email"]').value;
+      const message = form.querySelector('textarea[name="message"]').value;
 
-      if (formType === "external") {
-        externalForm.classList.remove("hidden");
-        internalForm.classList.add("hidden");
-        externalTab.classList.add("active");
-        internalTab.classList.remove("active");
-        tabIndicator.style.transform = "translateX(0)";
-      } else {
-        internalForm.classList.remove("hidden");
-        externalForm.classList.add("hidden");
-        internalTab.classList.add("active");
-        externalTab.classList.remove("active");
-        tabIndicator.style.transform = "translateX(100%)";
+      const turnstileElement = form.querySelector(".cf-turnstile");
+      const trustToken = turnstileElement
+        ? turnstileElement.getAttribute("data-token")
+        : null;
+
+      const intraName =
+        formId === "internalForm"
+          ? form.querySelector('input[name="intra_name"]').value
+          : null;
+
+      const data = {
+        name,
+        email,
+        message,
+        trustToken,
+      };
+
+      if (intraName) {
+        data.intra_name = intraName;
+      }
+
+      try {
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          const result = await response.json();
+          alert("Form submitted successfully!");
+        } else {
+          console.error("Error:", response.statusText);
+          alert("Failed to submit form. Please try again.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while submitting the form.");
       }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // 外部フォーム
+      document
+        .getElementById("externalForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          submitForm(
+            "externalForm",
+            "https://contact-form-backend.wakamiya626.workers.dev//external",
+          );
+        });
+
+      // 内部フォーム
+      document
+        .getElementById("internalForm")
+        .addEventListener("submit", (event) => {
+          event.preventDefault();
+          submitForm(
+            "internalForm",
+            "https://contact-form-backend.wakamiya626.workers.dev/internal",
+          );
+        });
+    });
   </script>
   <script
     src="https://challenges.cloudflare.com/turnstile/v0/api.js"
