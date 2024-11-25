@@ -1,23 +1,47 @@
 <header
   id="navbar"
+  data-transparent="{{ if .Params.transparentHeader }}true{{ else }}false{{ end }}"
   class="border-gray-600 border-opacity-0 border-b-[1px] fixed top-0 left-0 z-10 w-full transition-all duration-300 shadow-lg navbar {{ if .Params.transparentHeader }}bg-transparent opacity-100{{ else }}bg-base-100 opacity-90 border-opacity-100{{ end }}"
 >
   <div class="navbar-start">
-    <a href="/" class="text-xl font-bold normal-case btn btn-ghost"
-      >42 Tokyo 起業部</a
+    <a
+      href="{{ .Site.LanguagePrefix }}/"
+      class="text-xl font-bold normal-case btn btn-ghost"
     >
+      {{ i18n "siteTitle" }}
+    </a>
   </div>
 
   <div class="hidden navbar-center lg:navbar-end lg:flex">
     <ul class="px-1 menu menu-horizontal">
       <li>
-        <a href="/project" class="font-bold text-white">プロジェクト</a>
+        <a
+          href="{{ .Site.LanguagePrefix }}/project"
+          class="font-bold text-white"
+        >
+          {{ i18n "projects" }}
+        </a>
       </li>
       <li>
-        <a href="/tags" class="font-bold text-white">タグ</a>
+        <a href="{{ .Site.LanguagePrefix }}/tags" class="font-bold text-white">
+          {{ i18n "tags" }}
+        </a>
       </li>
       <li>
-        <a href="/categories" class="font-bold text-white">カテゴリ</a>
+        <a
+          href="{{ .Site.LanguagePrefix }}/categories"
+          class="font-bold text-white"
+        >
+          {{ i18n "categories" }}
+        </a>
+      </li>
+      <li>
+        <a
+          href="{{ .Site.LanguagePrefix }}/members"
+          class="font-bold text-white"
+        >
+          {{ i18n "members" }}
+        </a>
       </li>
     </ul>
   </div>
@@ -45,9 +69,28 @@
         class="z-10 p-2 mt-3 font-bold shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
       >
         <li>
-          <a href="/project" class="text-base text-white">プロジェクト</a>
-          <a href="/tags" class="text-base text-white">タグ</a>
-          <a href="/categories" class="text-base text-white">カテゴリ</a>
+          <a
+            href="{{ .Site.LanguagePrefix }}/project"
+            class="text-base text-white"
+          >
+            {{ i18n "projects" }}
+          </a>
+        </li>
+        <li>
+          <a
+            href="{{ .Site.LanguagePrefix }}/tags"
+            class="text-base text-white"
+          >
+            {{ i18n "tags" }}
+          </a>
+        </li>
+        <li>
+          <a
+            href="{{ .Site.LanguagePrefix }}/categories"
+            class="text-base text-white"
+          >
+            {{ i18n "categories" }}
+          </a>
         </li>
       </ul>
     </div>
@@ -55,33 +98,33 @@
 </header>
 
 <script>
-  document.addEventListener("scroll", () => {
-    const navbar = document.getElementById("navbar");
-    const isTransparent = navbar.classList.contains("bg-transparent");
+  document.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    const isTransparent = navbar.classList.contains('bg-transparent');
     const isBelowThreshold = window.scrollY > 50;
     if (isBelowThreshold && isTransparent) {
       navbar.classList.remove(
-        "bg-transparent",
-        "opacity-100",
-        "border-opacity-0"
+        'bg-transparent',
+        'opacity-100',
+        'border-opacity-0'
       );
-      navbar.classList.add("bg-base-100", "opacity-90", "border-opacity-100");
+      navbar.classList.add('bg-base-100', 'opacity-90', 'border-opacity-100');
     } else if (
       window.scrollY <= 50 &&
       !isTransparent &&
-      navbar.dataset.transparent === "true"
+      navbar.dataset.transparent === 'true'
     ) {
       navbar.classList.remove(
-        "bg-base-100",
-        "opacity-90",
-        "border-opacity-100"
+        'bg-base-100',
+        'opacity-90',
+        'border-opacity-100'
       );
-      navbar.classList.add("bg-transparent", "opacity-100", "border-opacity-0");
+      navbar.classList.add('bg-transparent', 'opacity-100', 'border-opacity-0');
     }
   });
-  document.addEventListener("DOMContentLoaded", () => {
-    const navbar = document.getElementById("navbar");
+  document.addEventListener('DOMContentLoaded', () => {
+    const navbar = document.getElementById('navbar');
     navbar.dataset.transparent =
-      "{{ if .Params.transparentHeader }}true{{ else }}false{{ end }}";
+      '{{ if .Params.transparentHeader }}true{{ else }}false{{ end }}';
   });
 </script>

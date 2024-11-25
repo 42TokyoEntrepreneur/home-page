@@ -1,5 +1,5 @@
 module.exports = {
-  mode: "jit", // JIT モードを有効化
+  mode: "jit",
   content: [
     "./layouts/**/*.html",
     "./content/**/*.md",

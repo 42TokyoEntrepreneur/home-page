@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const scrollButton = document.querySelector(".btn-primary");
-  const aboutSection = document.getElementById("about");
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollButton = document.querySelector('.btn-primary');
+  const aboutSection = document.getElementById('about');
 
   if (scrollButton && aboutSection) {
-    scrollButton.addEventListener("click", (e) => {
+    scrollButton.addEventListener('click', (e) => {
       e.preventDefault();
       smoothScrollTo(aboutSection.offsetTop, 800);
     });

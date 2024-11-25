@@ -1,0 +1,36 @@
+- id: siteTitle
+  translation: '42 Tokyo Entrepreneur'
+- id: projects
+  translation: 'Projets'
+- id: tags
+  translation: 'Tags'
+- id: categories
+  translation: 'Catégories'
+- id: events
+  translation: 'Événements'
+- id: searchPlaceholder
+  translation: 'Rechercher...'
+- id: heroTitle
+  translation: '42Tokyo Entrepreneur'
+- id: heroSubtitle
+  translation: 'Share your vision, grow together<br />Start your enterprise with us!<wbr />'
+- id: learnMore
+  translation: 'En savoir plus'
+- id: aboutUs
+  translation: 'À propos de nous'
+- id: visionTitle
+  translation: 'Vision'
+- id: visionContent
+  translation: 'La communauté entrepreneuriale la plus geek du Japon'
+- id: missionTitle
+  translation: 'Mission'
+- id: missionContent
+  translation: 'Un lieu pour créer des startups technologiques de premier plan au Japon'
+- id: contactUs
+  translation: 'Contactez-nous'
+- id: contactMessage
+  translation: "N'hésitez pas à nous contacter pour des questions ou des collaborations."
+- id: contactButton
+  translation: 'Nous écrire'
+- id: members
+  translation: 'Membres'

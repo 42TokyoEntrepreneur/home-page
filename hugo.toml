@@ -1,6 +1,26 @@
 baseURL = "https://entrepreneur.42tokyo.jp/"
 languageCode = "ja"
 defaultContentLanguage = "ja"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.ja]
+    languageName = "日本語"
+    [languages.ja.params]
+      lang = "ja"
+
+  [languages.en]
+    languageName = "English"
+    [languages.en.params]
+      lang = "en"
+
+  [languages.fr]
+    languageName = "Français"
+    [languages.fr.params]
+      lang = "fr"
+
+
+
 title = "42 Tokyo 起業部公式サイト"
 
 [params]
@@ -18,5 +38,5 @@ title = "42 Tokyo 起業部公式サイト"
 
 [sitemap]
   filename = "sitemap.xml"
-  changefreq = "dayly"
+  changefreq = "daily"
   priority = 0.5

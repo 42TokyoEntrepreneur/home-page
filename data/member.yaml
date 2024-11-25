@@ -1,0 +1,7 @@
+members:
+  - name: 'Test Member'
+    role: 'Test'
+    bio: 'Test'
+    image: 'https://avatars.githubusercontent.com/u/139568922?v=4'
+    github: 'https://github.com/small-engineer'
+    twitter: 'https://x.com/WakamiyaYuma'
