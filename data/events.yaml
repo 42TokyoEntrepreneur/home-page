@@ -1,8 +1,4 @@
-- name: "42 Tokyo Hackathon"
-  date: "2024-11-30"
-  location: "42 Tokyo Campus"
-  url: "https://example.com/hackathon"
-- name: "Tailwind CSS Workshop"
-  date: "2024-12-15"
-  location: "Online"
-  url: ""
+- name: 'コミュニケーション輪読会'
+  date: '2024-12-22'
+  location: '42 Tokyo Campus'
+  url: 'https://entrepreneur.42tokyo.jp/projects/コミュニケーション輪読会'
