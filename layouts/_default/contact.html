@@ -34,9 +34,7 @@
       <h2 class="mb-6 text-2xl font-semibold text-white">
         {{ i18n "externalFormTitle" }}
       </h2>
-      <form
-        action="https://contact-form-backend.wakamiya626.workers.dev/external-form"
-        method="POST">
+      <form id="externalFormElement">
         <div class="mb-4 ">
           <label class="block mb-2 text-sm font-medium text-white">
             {{ i18n "yourName" }}
@@ -85,9 +83,7 @@
       <h2 class="mb-6 text-2xl font-semibold text-white">
         {{ i18n "internalFormTitle" }}
       </h2>
-      <form
-        action="https://contact-form-backend.wakamiya626.workers.dev/internal-form"
-        method="POST">
+      <form id="internalFormElement">
         <div class="mb-4">
           <label class="block mb-2 text-sm font-medium text-white">
             {{ i18n "yourName" }}
@@ -141,37 +137,66 @@
   </div>
 
   <script>
-    function submitForm(event, formType) {
+    function toggleForm(formType) {
+      const externalForm = document.getElementById("externalForm");
+      const internalForm = document.getElementById("internalForm");
+      const externalTab = document.getElementById("externalFormTab");
+      const internalTab = document.getElementById("internalFormTab");
+      const tabIndicator = document.getElementById("tabIndicator");
+
+      if (formType === "external") {
+        externalForm.classList.remove("hidden");
+        internalForm.classList.add("hidden");
+        externalTab.classList.add("active");
+        internalTab.classList.remove("active");
+        tabIndicator.style.transform = "translateX(0)";
+      } else {
+        internalForm.classList.remove("hidden");
+        externalForm.classList.add("hidden");
+        internalTab.classList.add("active");
+        externalTab.classList.remove("active");
+        tabIndicator.style.transform = "translateX(100%)";
+      }
+    }
+
+    // フォーム送信をハンドルする関数
+    function handleFormSubmit(event, url, formType) {
       event.preventDefault();
-
-      const url =
-        formType === "external"
-          ? "https://contact-form-backend.wakamiya626.workers.dev/external-form"
-          : "https://contact-form-backend.wakamiya626.workers.dev/internal-form";
-
-      const formData = new FormData(event.target);
+      const form = event.target;
+      const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
+      // JSON形式でデータを送信
       fetch(url, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
       })
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return response.json();
-        })
-        .then((data) => {
-          console.log("Success:", data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+      .then(response => {
+        if (response.ok) {
+          alert('{{ i18n "formSubmitted" }}');
+          form.reset();
+        } else {
+          alert('{{ i18n "formSubmitError" }}');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('{{ i18n "formSubmitError" }}');
+      });
     }
+
+    // 外向けフォームの送信イベントをリッスン
+    document.getElementById('externalFormElement').addEventListener('submit', function(event) {
+      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/external-form', 'external');
+    });
+
+    // ウチ向けフォームの送信イベントをリッスン
+    document.getElementById('internalFormElement').addEventListener('submit', function(event) {
+      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/internal-form', 'internal');
+    });
   </script>
   <script
     src="https://challenges.cloudflare.com/turnstile/v0/api.js"
