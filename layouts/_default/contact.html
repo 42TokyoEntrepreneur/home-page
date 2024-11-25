@@ -141,26 +141,36 @@
   </div>
 
   <script>
-    function toggleForm(formType) {
-      const externalForm = document.getElementById("externalForm");
-      const internalForm = document.getElementById("internalForm");
-      const externalTab = document.getElementById("externalFormTab");
-      const internalTab = document.getElementById("internalFormTab");
-      const tabIndicator = document.getElementById("tabIndicator");
+    function submitForm(event, formType) {
+      event.preventDefault();
 
-      if (formType === "external") {
-        externalForm.classList.remove("hidden");
-        internalForm.classList.add("hidden");
-        externalTab.classList.add("active");
-        internalTab.classList.remove("active");
-        tabIndicator.style.transform = "translateX(0)";
-      } else {
-        internalForm.classList.remove("hidden");
-        externalForm.classList.add("hidden");
-        internalTab.classList.add("active");
-        externalTab.classList.remove("active");
-        tabIndicator.style.transform = "translateX(100%)";
-      }
+      const url =
+        formType === "external"
+          ? "https://contact-form-backend.wakamiya626.workers.dev/external-form"
+          : "https://contact-form-backend.wakamiya626.workers.dev/internal-form";
+
+      const formData = new FormData(event.target);
+      const data = Object.fromEntries(formData.entries());
+
+      fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log("Success:", data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
   </script>
   <script
