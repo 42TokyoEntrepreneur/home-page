@@ -1,19 +1,20 @@
 {{ define "main" }}
-<div class="flex flex-col items-center gap-4 md:flex-row md:justify-between">
-  <h1 class="text-4xl font-bold text-right md:text-left">{{ .Title }}</h1>
-</div>
-<div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3">
-  {{ range .Pages }}
-  <div class="flex flex-col mx-6 shadow-lg md:mx-0 lg:mx-0 card bg-base-300">
-    <div class="flex flex-col flex-grow card-body">
-      <h2 class="card-title">{{ .Title }}</h2>
-      <div class="justify-end mt-auto card-actions">
-        <a href="{{ .RelPermalink }}" class="btn btn-primary">
-          プロジェクトを見る
-        </a>
-      </div>
-    </div>
+  <div class="flex flex-col items-center gap-4 md:flex-row md:justify-between">
+    <h1 class="text-4xl font-bold text-right md:text-left">{{ .Title }}</h1>
   </div>
-  {{ end }}
-</div>
+  <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3">
+    {{ range .Pages }}
+      <div
+        class="flex flex-col mx-6 shadow-lg md:mx-0 lg:mx-0 card bg-base-300">
+        <div class="flex flex-col flex-grow card-body">
+          <h2 class="card-title">{{ .Title }}</h2>
+          <div class="justify-end mt-auto card-actions">
+            <a href="{{ .RelPermalink }}" class="btn btn-primary">
+              プロジェクトを見る
+            </a>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
 {{ end }}

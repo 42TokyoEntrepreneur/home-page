@@ -36,6 +36,9 @@ title = "42 Tokyo 起業部公式サイト"
     [markup.goldmark.renderer]
       unsafe = true
 
+[security.funcs]
+getenv = ['^HUGO_', '^CI$', '^TRUSTSITE_ID$']
+
 [sitemap]
   filename = "sitemap.xml"
   changefreq = "daily"

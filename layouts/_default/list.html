@@ -1,35 +1,34 @@
 {{ define "main" }}
-<div class="flex flex-col items-center gap-4 md:flex-row md:justify-between">
-  <h1 class="text-4xl font-bold text-right md:text-left">{{ .Title }}</h1>
-  <div class="w-full md:w-auto">{{ partial "search.html" . }}</div>
-</div>
-
-<!-- Project Grid -->
-<div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3">
-  {{ range .Pages }}
-  <div
-    class="flex flex-col mx-6 shadow-lg md:mx-0 lg:mx-0 card bg-base-300 project-card"
-  >
-    {{ $imageURL := .Params.image }} {{ $image := resources.GetRemote $imageURL
-    }} {{ if and $imageURL (not (eq $image nil)) }}
-    <figure class="relative h-48 bg-gray-300">
-      <img
-        src="{{ $image.Permalink }}"
-        alt="{{ .Title }}"
-        class="object-cover w-full h-full"
-      />
-    </figure>
-    {{ end }}
-    <div class="flex flex-col flex-grow card-body">
-      <h2 class="card-title">{{ .Title }}</h2>
-      <p class="flex-grow">
-        {{ .Params.description | default "説明がありません" }}
-      </p>
-      <div class="justify-end mt-auto card-actions">
-        <a href="{{ .RelPermalink }}" class="btn btn-primary">詳細を見る</a>
-      </div>
-    </div>
+  <div class="flex flex-col items-center gap-4 md:flex-row md:justify-between">
+    <h1 class="text-4xl font-bold text-right md:text-left">{{ .Title }}</h1>
+    <div class="w-full md:w-auto">{{ partial "search.html" . }}</div>
   </div>
-  {{ end }}
-</div>
+
+  <!-- Project Grid -->
+  <div class="grid grid-cols-1 gap-6 mt-6 md:grid-cols-2 lg:grid-cols-3">
+    {{ range .Pages }}
+      <div
+        class="flex flex-col mx-6 shadow-lg md:mx-0 lg:mx-0 card bg-base-300 project-card">
+        {{ $imageURL := .Params.image }}
+        {{ $image := resources.GetRemote $imageURL }}
+        {{ if and $imageURL (not (eq $image nil)) }}
+          <figure class="relative h-48 bg-gray-300">
+            <img
+              src="{{ $image.Permalink }}"
+              alt="{{ .Title }}"
+              class="object-cover w-full h-full" />
+          </figure>
+        {{ end }}
+        <div class="flex flex-col flex-grow card-body">
+          <h2 class="card-title">{{ .Title }}</h2>
+          <p class="flex-grow">
+            {{ .Params.description | default "説明がありません" }}
+          </p>
+          <div class="justify-end mt-auto card-actions">
+            <a href="{{ .RelPermalink }}" class="btn btn-primary">詳細を見る</a>
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
 {{ end }}

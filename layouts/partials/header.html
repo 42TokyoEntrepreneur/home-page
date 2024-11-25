@@ -1,13 +1,19 @@
 <header
   id="navbar"
-  data-transparent="{{ if .Params.transparentHeader }}true{{ else }}false{{ end }}"
-  class="border-gray-600 border-opacity-0 border-b-[1px] fixed top-0 left-0 z-10 w-full transition-all duration-300 shadow-lg navbar {{ if .Params.transparentHeader }}bg-transparent opacity-100{{ else }}bg-base-100 opacity-90 border-opacity-100{{ end }}"
->
+  data-transparent="{{ if .Params.transparentHeader }}
+    true
+  {{ else }}
+    false
+  {{ end }}"
+  class="border-gray-600 border-opacity-0 border-b-[1px] fixed top-0 left-0 z-10 w-full transition-all duration-300 shadow-lg navbar {{ if .Params.transparentHeader }}
+    bg-transparent opacity-100
+  {{ else }}
+    bg-base-100 opacity-90 border-opacity-100
+  {{ end }}">
   <div class="navbar-start">
     <a
       href="{{ .Site.LanguagePrefix }}/"
-      class="text-xl font-bold normal-case btn btn-ghost"
-    >
+      class="text-xl font-bold normal-case btn btn-ghost">
       {{ i18n "siteTitle" }}
     </a>
   </div>
@@ -17,8 +23,7 @@
       <li>
         <a
           href="{{ .Site.LanguagePrefix }}/project"
-          class="font-bold text-white"
-        >
+          class="font-bold text-white">
           {{ i18n "projects" }}
         </a>
       </li>
@@ -30,16 +35,14 @@
       <li>
         <a
           href="{{ .Site.LanguagePrefix }}/categories"
-          class="font-bold text-white"
-        >
+          class="font-bold text-white">
           {{ i18n "categories" }}
         </a>
       </li>
       <li>
         <a
           href="{{ .Site.LanguagePrefix }}/members"
-          class="font-bold text-white"
-        >
+          class="font-bold text-white">
           {{ i18n "members" }}
         </a>
       </li>
@@ -54,41 +57,35 @@
           class="w-7 h-7"
           fill="none"
           viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
+          stroke="currentColor">
           <path
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
+            d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </label>
       <ul
         tabindex="0"
-        class="z-10 p-2 mt-3 font-bold shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52"
-      >
+        class="z-50 p-2 mt-3 font-bold shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
         <li>
           <a
             href="{{ .Site.LanguagePrefix }}/project"
-            class="text-base text-white"
-          >
+            class="text-base text-white">
             {{ i18n "projects" }}
           </a>
         </li>
         <li>
           <a
             href="{{ .Site.LanguagePrefix }}/tags"
-            class="text-base text-white"
-          >
+            class="text-base text-white">
             {{ i18n "tags" }}
           </a>
         </li>
         <li>
           <a
             href="{{ .Site.LanguagePrefix }}/categories"
-            class="text-base text-white"
-          >
+            class="text-base text-white">
             {{ i18n "categories" }}
           </a>
         </li>

@@ -4,8 +4,8 @@
   <canvas id="starsCanvas" class="absolute inset-0 w-full h-full"></canvas>
 </div>
 <script>
-  const canvas = document.getElementById('starsCanvas');
-  const ctx = canvas.getContext('2d');
+  const canvas = document.getElementById("starsCanvas");
+  const ctx = canvas.getContext("2d");
   let starField = [];
   let brightStars = [];
   const scrollVelocity = 0.07;
@@ -17,10 +17,10 @@
       0,
       canvas.width / 2,
       canvas.height / 2,
-      Math.max(canvas.width, canvas.height) / 1.5
+      Math.max(canvas.width, canvas.height) / 1.5,
     );
-    gradient.addColorStop(0, 'rgba(5, 5, 15, 1)');
-    gradient.addColorStop(1, 'rgba(0, 0, 0, 1)');
+    gradient.addColorStop(0, "rgba(5, 5, 15, 1)");
+    gradient.addColorStop(1, "rgba(0, 0, 0, 1)");
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
@@ -64,14 +64,14 @@
 
   function getRandomColor() {
     const colors = [
-      'rgba(255, 255, 255, 1)',
-      'rgba(255, 255, 255, 1)',
-      'rgba(255, 255, 255, 1)',
-      'rgba(255, 255, 255, 1)',
-      'rgba(255, 255, 255, 1)',
-      'rgba(173, 216, 230, 1)',
-      'rgba(173, 216, 230, 1)',
-      'rgba(255, 99, 71, 1)',
+      "rgba(255, 255, 255, 1)",
+      "rgba(255, 255, 255, 1)",
+      "rgba(255, 255, 255, 1)",
+      "rgba(255, 255, 255, 1)",
+      "rgba(255, 255, 255, 1)",
+      "rgba(173, 216, 230, 1)",
+      "rgba(173, 216, 230, 1)",
+      "rgba(255, 99, 71, 1)",
     ];
     return colors[Math.floor(Math.random() * colors.length)];
   }
@@ -130,7 +130,7 @@
     requestAnimationFrame(animate);
   }
 
-  window.addEventListener('resize', resizeCanvas);
+  window.addEventListener("resize", resizeCanvas);
   resizeCanvas();
   animate();
 </script>

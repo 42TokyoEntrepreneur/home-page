@@ -1,36 +1,58 @@
 - id: siteTitle
-  translation: '42 Tokyo Entrepreneur'
+  translation: "42 Tokyo Entrepreneur"
 - id: projects
-  translation: 'Projets'
+  translation: "Projets"
 - id: tags
-  translation: 'Tags'
+  translation: "Tags"
 - id: categories
-  translation: 'Catégories'
+  translation: "Catégories"
 - id: events
-  translation: 'Événements'
+  translation: "Événements"
 - id: searchPlaceholder
-  translation: 'Rechercher...'
+  translation: "Rechercher..."
 - id: heroTitle
-  translation: '42Tokyo Entrepreneur'
+  translation: "42Tokyo Entrepreneur"
 - id: heroSubtitle
-  translation: 'Share your vision, grow together<br />Start your enterprise with us!<wbr />'
+  translation: "Share your vision, grow together<br />Start your enterprise with us!<wbr />"
 - id: learnMore
-  translation: 'En savoir plus'
+  translation: "En savoir plus"
 - id: aboutUs
-  translation: 'À propos de nous'
+  translation: "À propos de nous"
 - id: visionTitle
-  translation: 'Vision'
+  translation: "Vision"
 - id: visionContent
-  translation: 'La communauté entrepreneuriale la plus geek du Japon'
+  translation: "La communauté entrepreneuriale la plus geek du Japon"
 - id: missionTitle
-  translation: 'Mission'
+  translation: "Mission"
 - id: missionContent
-  translation: 'Un lieu pour créer des startups technologiques de premier plan au Japon'
+  translation: "Un lieu pour créer des startups technologiques de premier plan au Japon"
 - id: contactUs
-  translation: 'Contactez-nous'
+  translation: "Contactez-nous"
 - id: contactMessage
   translation: "N'hésitez pas à nous contacter pour des questions ou des collaborations."
 - id: contactButton
-  translation: 'Nous écrire'
+  translation: "Nous écrire"
 - id: members
-  translation: 'Membres'
+  translation: "Membres"
+- id: contactUs
+  translation: "Contactez-nous"
+- id: contactMessage
+  translation: "N'hésitez pas à nous contacter en utilisant les formulaires ci-dessous."
+- id: externalForm
+  translation: "Formulaire externe"
+- id: internalForm
+  translation: "Formulaire interne"
+- id: externalFormTitle
+  translation: "Nous contacter (Externe)"
+- id: internalFormTitle
+  translation: "Contact personnel (Interne)"
+- id: yourName
+  translation: "Votre nom"
+- id: yourEmail
+  translation: "Votre e-mail"
+- id: yourMessage
+  translation: "Votre message"
+- id: submitButton
+  translation: "Envoyer"
+- id: yourIntraName
+  translation: "Votre nom Intra"
