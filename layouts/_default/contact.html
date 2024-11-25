@@ -29,13 +29,15 @@
   <div class="container max-w-2xl mx-auto mt-5">
     <!-- 外向けフォーム -->
     <div
-      id="externalFormContainer"
+      id="externalForm"
       class="p-8 mx-2 border border-white rounded-lg shadow-md">
       <h2 class="mb-6 text-2xl font-semibold text-white">
         {{ i18n "externalFormTitle" }}
       </h2>
-      <form id="externalForm" method="POST">
-        <div class="mb-4">
+      <form
+        action="https://contact-form-backend.wakamiya626.workers.dev/external-form-handler"
+        method="POST">
+        <div class="mb-4 ">
           <label class="block mb-2 text-sm font-medium text-white">
             {{ i18n "yourName" }}
           </label>
@@ -78,12 +80,14 @@
 
     <!-- ウチ向けフォーム -->
     <div
-      id="internalFormContainer"
+      id="internalForm"
       class="hidden p-8 mx-2 border border-white rounded-lg shadow-md">
       <h2 class="mb-6 text-2xl font-semibold text-white">
         {{ i18n "internalFormTitle" }}
       </h2>
-      <form id="internalForm" method="POST">
+      <form
+        action="https://contact-form-backend.wakamiya626.workers.dev/internal-form-handler"
+        method="POST">
         <div class="mb-4">
           <label class="block mb-2 text-sm font-medium text-white">
             {{ i18n "yourName" }}
@@ -137,65 +141,27 @@
   </div>
 
   <script>
-    async function submitForm(formId, endpoint) {
-      const form = document.getElementById(formId);
-      if (!form) {
-        console.error(`Form with ID "${formId}" not found.`);
-        return;
-      }
+    function toggleForm(formType) {
+      const externalForm = document.getElementById("externalForm");
+      const internalForm = document.getElementById("internalForm");
+      const externalTab = document.getElementById("externalFormTab");
+      const internalTab = document.getElementById("internalFormTab");
+      const tabIndicator = document.getElementById("tabIndicator");
 
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
-
-      // TrustSiteトークン取得
-      const trustToken = form
-        .querySelector(".cf-turnstile")
-        .getAttribute("data-response");
-      data.trustToken = trustToken;
-
-      try {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-          alert("フォーム送信に成功しました！");
-        } else {
-          const error = await response.json();
-          console.error("エラー内容:", error);
-          alert("フォーム送信に失敗しました。再度お試しください。");
-        }
-      } catch (err) {
-        console.error("エラーが発生しました:", err);
-        alert("フォーム送信中に問題が発生しました。");
+      if (formType === "external") {
+        externalForm.classList.remove("hidden");
+        internalForm.classList.add("hidden");
+        externalTab.classList.add("active");
+        internalTab.classList.remove("active");
+        tabIndicator.style.transform = "translateX(0)";
+      } else {
+        internalForm.classList.remove("hidden");
+        externalForm.classList.add("hidden");
+        internalTab.classList.add("active");
+        externalTab.classList.remove("active");
+        tabIndicator.style.transform = "translateX(100%)";
       }
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const externalForm = document.getElementById("externalForm");
-      if (externalForm) {
-        externalForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          submitForm(
-            "externalForm",
-            "https://contact-form-backend.wakamiya626.workers.dev/external",
-          );
-        });
-      }
-
-      const internalForm = document.getElementById("internalForm");
-      if (internalForm) {
-        internalForm.addEventListener("submit", (event) => {
-          event.preventDefault();
-          submitForm(
-            "internalForm",
-            "https://contact-form-backend.wakamiya626.workers.dev/internal",
-          );
-        });
-      }
-    });
   </script>
   <script
     src="https://challenges.cloudflare.com/turnstile/v0/api.js"
