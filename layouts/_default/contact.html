@@ -129,7 +129,7 @@
             class="cf-turnstile mx-auto sm:scale-100 sm:max-w-none scale-75 max-w-[85%]"
             data-sitekey="{{ getenv "TRUSTSITE_ID" }}"></div>
         </div>
-        <button type="submit" class="w-full px-4 py-2 btn btn-secondary">
+        <button type="submit" class="w-full px-4 py-2 btn btn-primary">
           {{ i18n "submitButton" }}
         </button>
       </form>
@@ -159,56 +159,43 @@
       }
     }
 
-    // フォーム送信をハンドルする関数
-    async function handleFormSubmit(event, url, formType) {
-      event.preventDefault();
-      const form = event.target;
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+     // フォーム送信をハンドルする関数
+  async function handleFormSubmit(event, url, formType) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
 
-      // TrustTokenを追加
-      const trustTokenElement = document.querySelector('.cf-turnstile input[name="cf-turnstile-response"]');
-      if (trustTokenElement && trustTokenElement.value) {
-        data['trustToken'] = trustTokenElement.value;
+    // データの送信をFormDataで行う
+    try {
+      const response = await fetch(url, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert('{{ i18n "formSubmitted" }}');
+        form.reset();
       } else {
-        alert('{{ i18n "trustTokenError" }}'); // エラーメッセージ
-        return;
-      }
-
-      // JSON形式でデータを送信
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-          alert('{{ i18n "formSubmitted" }}');
-          form.reset();
-        } else {
-          const errorData = await response.json();
-          console.error('Error Response:', errorData);
-          alert('{{ i18n "formSubmitError" }}');
-        }
-      } catch (error) {
-        console.error('Error:', error);
+        const errorData = await response.json();
+        console.error('Error Response:', errorData);
         alert('{{ i18n "formSubmitError" }}');
       }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('{{ i18n "formSubmitError" }}');
     }
+  }
 
-    // 外向けフォームの送信イベントをリッスン
-    document.getElementById('externalFormElement').addEventListener('submit', function (event) {
-      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/external-form', 'external');
-    });
+  // 外向けフォームの送信イベントをリッスン
+  document.getElementById('externalFormElement').addEventListener('submit', function (event) {
+    handleFormSubmit(event, 'https://contact-form-backend.example.com/external-form', 'external');
+  });
 
-    // ウチ向けフォームの送信イベントをリッスン
-    document.getElementById('internalFormElement').addEventListener('submit', function (event) {
-      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/internal-form', 'internal');
-    });
-  </script>
+  // ウチ向けフォームの送信イベントをリッスン
+  document.getElementById('internalFormElement').addEventListener('submit', function (event) {
+    handleFormSubmit(event, 'https://contact-form-backend.example.com/internal-form', 'internal');
+  });
+</script>
   <script
     src="https://challenges.cloudflare.com/turnstile/v0/api.js"
     async
