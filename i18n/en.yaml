@@ -57,10 +57,10 @@
 - id: yourIntraName
   translation: "Your Intra Name"
 - id: formSubmitError
-  translation: "An error occurred while submitting the form. Please try again."
+  translation: "An error occurred while submitting the form. Please try again later."
 - id: InvalidNameError
   translation: "The name is invalid. Please enter up to 50 characters."
 - id: InvalidEmailError
   translation: "The email address format is invalid."
 - id: InvalidMessageError
-  translation: "An error occurred while submitting the form. Please try again later."
+  translation: "The message is invalid. Please enter up to 500 characters."
