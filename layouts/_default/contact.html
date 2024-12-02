@@ -143,6 +143,13 @@
   </div>
 
   <script>
+    const errorMessages = {
+      name: '{{ i18n "InvalidNameError" }}', // 名前のエラー
+      email: '{{ i18n "InvalidEmailError" }}', // メールアドレスのエラー
+      message: '{{ i18n "InvalidMessageError" }}', // メッセージのエラー
+      default: '{{ i18n "formSubmitError" }}',
+    };
+
     function toggleForm(formType) {
       const externalForm = document.getElementById("externalForm");
       const internalForm = document.getElementById("internalForm");
@@ -187,13 +194,24 @@
         } else {
           const errorData = await response.json();
           console.error('Error Response:', errorData);
+
+          // バックエンドのエラーに応じたメッセージを表示
+          let errorMessage = errorMessages.default;
+          if (errorData.error === 'Invalid name') {
+            errorMessage = errorMessages.name;
+          } else if (errorData.error === 'Invalid email address') {
+            errorMessage = errorMessages.email;
+          } else if (errorData.error === 'Invalid message content') {
+            errorMessage = errorMessages.message;
+          }
+
           // エラーメッセージをページ内に表示
-          errorMessageDiv.innerHTML = errorData.message || '{{ i18n "formSubmitError" }}';
+          errorMessageDiv.innerHTML = errorMessage;
         }
       } catch (error) {
         console.error('Error:', error);
-        // エラーメッセージをページ内に表示
-        errorMessageDiv.innerHTML = '{{ i18n "formSubmitError" }}';
+        // ネットワークエラーや例外のエラーメッセージを表示
+        errorMessageDiv.innerHTML = errorMessages.default;
       }
     }
 

@@ -58,3 +58,9 @@
   translation: "イントラ名"
 - id: formSubmitError
   translation: "送信エラーが発生しました。再度お試しください。"
+- id: InvalidNameError
+  translation: "お名前が無効です。50文字以内で入力してください。"
+- id: InvalidEmailError
+  translation: "メールアドレスの形式が無効です。"
+- id: InvalidMessageError
+  translation: "フォームの送信中にエラーが発生しました。後でもう一度お試しください。"
