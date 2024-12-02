@@ -1,12 +1,21 @@
 {{ define "main" }}
-<div
-  class="flex flex-col items-center gap-4 px-4 md:flex-row md:justify-between"
->
-  <h1 class="text-3xl font-bold text-center md:text-left">{{ .Title }}</h1>
-</div>
-<div class="grid grid-cols-1 gap-6 px-4 mt-6 sm:grid-cols-2 lg:grid-cols-3">
-  {{ range site.Data.member.members }}
-  <div class="p-4 rounded-lg shadow-lg">{{ partial "member-card.html" . }}</div>
-  {{ end }}
-</div>
+  <div
+    class="flex flex-col items-center gap-4 px-4 md:flex-row md:justify-between">
+    <h1 class="text-3xl font-bold text-center md:text-left">{{ .Title }}</h1>
+  </div>
+  <!-- 公開準備中 -->
+  <div class="container px-4 py-16 mx-auto">
+    <p class="text-xl text-center">公開準備中</p>
+  </div>
+    <!--
+  メンバーの一覧を表示
+  <div class="grid grid-cols-1 gap-6 px-4 mt-6 sm:grid-cols-2 lg:grid-cols-3">
+    {{ range site.Data.member.members }}
+      <div class="p-4 rounded-lg shadow-lg">
+        {{ partial "member-card.html" . }}
+      </div>
+    {{ end }}
+  </div>
+  -->
+  </div>
 {{ end }}

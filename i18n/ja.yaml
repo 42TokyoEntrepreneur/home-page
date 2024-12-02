@@ -1,36 +1,66 @@
 - id: siteTitle
-  translation: '42 Tokyo 起業部'
+  translation: "42 Tokyo 起業部"
 - id: projects
-  translation: 'プロジェクト'
+  translation: "プロジェクト"
 - id: tags
-  translation: 'タグ'
+  translation: "タグ"
 - id: categories
-  translation: 'カテゴリ'
+  translation: "カテゴリ"
 - id: events
-  translation: 'イベント'
+  translation: "イベント"
 - id: searchPlaceholder
-  translation: '検索...'
+  translation: "検索..."
 - id: heroTitle
-  translation: '42Tokyo 起業部'
+  translation: "42Tokyo 起業部"
 - id: heroSubtitle
-  translation: 'Share your vision, grow together<br />Start your enterprise with us!<wbr />'
+  translation: "Share your vision, grow together<br />Start your enterprise with us!<wbr />"
 - id: learnMore
-  translation: 'もっと知る'
+  translation: "もっと知る"
 - id: aboutUs
-  translation: '私たちについて'
+  translation: "私たちについて"
 - id: visionTitle
-  translation: 'ビジョン'
+  translation: "ビジョン"
 - id: visionContent
-  translation: '日本一ギークな起業家コミュニティ'
+  translation: "日本一ギークな起業家コミュニティ"
 - id: missionTitle
-  translation: 'ミッション'
+  translation: "ミッション"
 - id: missionContent
-  translation: '日本を代表するテクノロジー起業を創出する場'
+  translation: "日本を代表するテクノロジー起業を創出する場"
 - id: contactUs
-  translation: 'お問い合わせ'
+  translation: "お問い合わせ"
 - id: contactMessage
-  translation: '起業部に関するご質問やご相談は、お気軽にお問い合わせください。'
+  translation: "起業部に関するご質問やご相談は、お気軽にお問い合わせください。"
 - id: contactButton
-  translation: 'メールでお問い合わせ'
+  translation: "メールでお問い合わせ"
 - id: members
-  translation: 'メンバー'
+  translation: "メンバー"
+- id: contactUs
+  translation: "お問い合わせ"
+- id: contactMessage
+  translation: "以下のフォームからお気軽にご連絡ください。"
+- id: externalForm
+  translation: "お問い合わせフォーム"
+- id: internalForm
+  translation: "42学生向け"
+- id: externalFormTitle
+  translation: "お問い合わせ"
+- id: internalFormTitle
+  translation: "42学生向け お問い合わせ"
+- id: yourName
+  translation: "お名前"
+- id: yourEmail
+  translation: "メールアドレス"
+- id: yourMessage
+  translation: "メッセージ"
+- id: submitButton
+  translation: "送信"
+- id: yourIntraName
+  translation: "イントラ名"
+- id: formSubmitError
+  translation: "フォームの送信中にエラーが発生しました。後でもう一度お試しください。"
+- id: InvalidNameError
+  translation: "お名前が無効です。50文字以内で入力してください。"
+- id: InvalidEmailError
+  translation: "メールアドレスの形式が無効です。"
+- id: InvalidMessageError
+  translation: "メッセージが無効です。500文字以内で入力してください"

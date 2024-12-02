@@ -3,25 +3,20 @@ languageCode = "ja"
 defaultContentLanguage = "ja"
 defaultContentLanguageInSubdir = false
 
+title = "42 Tokyo 起業部公式サイト"
+
 [languages]
   [languages.ja]
     languageName = "日本語"
-    [languages.ja.params]
-      lang = "ja"
+    params.lang = "ja"
 
   [languages.en]
     languageName = "English"
-    [languages.en.params]
-      lang = "en"
+    params.lang = "en"
 
   [languages.fr]
     languageName = "Français"
-    [languages.fr.params]
-      lang = "fr"
-
-
-
-title = "42 Tokyo 起業部公式サイト"
+    params.lang = "fr"
 
 [params]
   description = "42 Tokyo 起業部の公式サイトです。"
@@ -35,6 +30,10 @@ title = "42 Tokyo 起業部公式サイト"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+[security]
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$', '^TRUSTSITE_ID$']
 
 [sitemap]
   filename = "sitemap.xml"

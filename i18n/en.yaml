@@ -1,36 +1,66 @@
 - id: siteTitle
-  translation: '42 Tokyo Entrepreneur'
+  translation: "42 Tokyo Entrepreneur"
 - id: projects
-  translation: 'Projects'
+  translation: "Projects"
 - id: tags
-  translation: 'Tags'
+  translation: "Tags"
 - id: categories
-  translation: 'Categories'
+  translation: "Categories"
 - id: events
-  translation: 'Events'
+  translation: "Events"
 - id: searchPlaceholder
-  translation: 'Search...'
+  translation: "Search..."
 - id: heroTitle
-  translation: '42Tokyo Entrepreneur'
+  translation: "42Tokyo Entrepreneur"
 - id: heroSubtitle
-  translation: 'Share your vision, grow together<br />Start your enterprise with us!<wbr />'
+  translation: "Share your vision, grow together<br />Start your enterprise with us!<wbr />"
 - id: learnMore
-  translation: 'Learn More'
+  translation: "Learn More"
 - id: aboutUs
-  translation: 'About Us'
+  translation: "About Us"
 - id: visionTitle
-  translation: 'Vision'
+  translation: "Vision"
 - id: visionContent
-  translation: 'The most geeky entrepreneurial community in Japan'
+  translation: "The most geeky entrepreneurial community in Japan"
 - id: missionTitle
-  translation: 'Mission'
+  translation: "Mission"
 - id: missionContent
-  translation: 'A place to create leading technology startups in Japan'
+  translation: "A place to create leading technology startups in Japan"
 - id: contactUs
-  translation: 'Contact Us'
+  translation: "Contact Us"
 - id: contactMessage
-  translation: 'Feel free to reach out with questions or collaborations.'
+  translation: "Feel free to reach out with questions or collaborations."
 - id: contactButton
-  translation: 'Email Us'
+  translation: "Email Us"
 - id: members
-  translation: 'Members'
+  translation: "Members"
+- id: contactUs
+  translation: "Contact Us"
+- id: contactMessage
+  translation: "Feel free to reach out to us using the forms below."
+- id: externalForm
+  translation: "External Form"
+- id: internalForm
+  translation: "Internal Form"
+- id: externalFormTitle
+  translation: "Get in Touch (External)"
+- id: internalFormTitle
+  translation: "Staff Contact (Internal)"
+- id: yourName
+  translation: "Your Name"
+- id: yourEmail
+  translation: "Your Email"
+- id: yourMessage
+  translation: "Your Message"
+- id: submitButton
+  translation: "Submit"
+- id: yourIntraName
+  translation: "Your Intra Name"
+- id: formSubmitError
+  translation: "An error occurred while submitting the form. Please try again later."
+- id: InvalidNameError
+  translation: "The name is invalid. Please enter up to 50 characters."
+- id: InvalidEmailError
+  translation: "The email address format is invalid."
+- id: InvalidMessageError
+  translation: "The message is invalid. Please enter up to 500 characters."

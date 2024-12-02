@@ -1,0 +1,232 @@
+{{ define "main" }}
+  <div class="flex flex-col items-center gap-6">
+    <h1 class="text-4xl font-bold text-center">{{ i18n "contactUs" }}</h1>
+    <p class="mt-2 text-lg text-center text-gray-200">
+      {{ i18n "contactMessage" }}
+    </p>
+  </div>
+
+  <div class="flex justify-center mx-5 mt-8">
+    <div class="relative flex overflow-hidden rounded-lg shadow-md bg-base-100">
+      <button
+        id="externalFormTab"
+        class="relative z-10 w-32 py-2 text-sm font-medium transition-all duration-300 tab focus:outline-none"
+        onclick="toggleForm('external')">
+        {{ i18n "externalForm" }}
+      </button>
+      <button
+        id="internalFormTab"
+        class="relative z-10 w-32 py-2 text-sm font-medium transition-all duration-300 tab focus:outline-none"
+        onclick="toggleForm('internal')">
+        {{ i18n "internalForm" }}
+      </button>
+      <div
+        id="tabIndicator"
+        class="absolute top-0 bottom-0 left-0 w-32 transition-transform duration-300 rounded-lg bg-primary"></div>
+    </div>
+  </div>
+
+  <div class="container max-w-2xl mx-auto mt-5">
+    <!-- 外向けフォーム -->
+    <div
+      id="externalForm"
+      class="p-8 mx-2 border border-white rounded-lg shadow-md">
+      <h2 class="mb-6 text-2xl font-semibold text-white">
+        {{ i18n "externalFormTitle" }}
+      </h2>
+      <form id="externalFormElement">
+        <div class="mb-4">
+          <label class="block mb-2 text-sm font-medium text-white">
+            {{ i18n "yourName" }}
+          </label>
+          <input
+            type="text"
+            name="name"
+            class="w-full p-3 border rounded-lg input input-bordered focus:outline-none focus:ring focus:ring-primary"
+            required />
+        </div>
+        <div class="mb-4">
+          <label class="block mb-2 text-sm font-medium text-white">
+            {{ i18n "yourEmail" }}
+          </label>
+          <input
+            type="email"
+            name="email"
+            class="w-full p-3 border rounded-lg input input-bordered focus:outline-none focus:ring focus:ring-primary"
+            required />
+        </div>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm font-medium text-white">
+            {{ i18n "yourMessage" }}
+          </label>
+          <textarea
+            name="message"
+            class="w-full p-3 border rounded-lg textarea textarea-bordered focus:outline-none focus:ring focus:ring-primary"
+            rows="5"
+            required></textarea>
+        </div>
+        <div class="mb-4">
+          <div
+            class="cf-turnstile mx-auto sm:scale-100 sm:max-w-none scale-75 max-w-[85%]"
+            data-sitekey="{{ getenv "TRUSTSITE_ID" }}"></div>
+        </div>
+        <div class="mb-4">
+          <div class="text-red-500 error-message"></div>
+        </div>
+        <button type="submit" class="w-full px-4 py-2 btn btn-primary">
+          {{ i18n "submitButton" }}
+        </button>
+      </form>
+    </div>
+
+    <!-- ウチ向けフォーム -->
+    <div
+      id="internalForm"
+      class="hidden p-8 mx-2 border border-white rounded-lg shadow-md">
+      <h2 class="mb-6 text-2xl font-semibold text-white">
+        {{ i18n "internalFormTitle" }}
+      </h2>
+      <form id="internalFormElement">
+        <div class="mb-4">
+          <label class="block mb-2 text-sm font-medium text-white">
+            {{ i18n "yourName" }}
+          </label>
+          <input
+            type="text"
+            name="name"
+            class="w-full p-3 border rounded-lg input input-bordered focus:outline-none focus:ring focus:ring-secondary"
+            required />
+        </div>
+        <div class="mb-4">
+          <label class="block mb-2 text-sm font-medium text-white">
+            {{ i18n "yourIntraName" }}
+          </label>
+          <input
+            type="text"
+            name="intra_name"
+            class="w-full p-3 border rounded-lg input input-bordered focus:outline-none focus:ring focus:ring-secondary"
+            required />
+        </div>
+        <div class="mb-4">
+          <label class="block mb-2 text-sm font-medium text-white">
+            {{ i18n "yourEmail" }}
+          </label>
+          <input
+            type="email"
+            name="email"
+            class="w-full p-3 border rounded-lg input input-bordered focus:outline-none focus:ring focus:ring-secondary"
+            required />
+        </div>
+        <div class="mb-6">
+          <label class="block mb-2 text-sm font-medium text-white">
+            {{ i18n "yourMessage" }}
+          </label>
+          <textarea
+            name="message"
+            class="w-full p-3 border rounded-lg textarea textarea-bordered focus:outline-none focus:ring focus:ring-secondary"
+            rows="5"
+            required></textarea>
+        </div>
+        <div class="mb-4">
+          <div
+            class="cf-turnstile mx-auto sm:scale-100 sm:max-w-none scale-75 max-w-[85%]"
+            data-sitekey="{{ getenv "TRUSTSITE_ID" }}"></div>
+        </div>
+        <div class="mb-4">
+          <div class="text-red-500 error-message"></div>
+        </div>
+        <button type="submit" class="w-full px-4 py-2 btn btn-primary">
+          {{ i18n "submitButton" }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const errorMessages = {
+      name: '{{ i18n "InvalidNameError" }}',
+      email: '{{ i18n "InvalidEmailError" }}',
+      message: '{{ i18n "InvalidMessageError" }}',
+      default: '{{ i18n "formSubmitError" }}',
+    };
+
+    function toggleForm(formType) {
+      const externalForm = document.getElementById("externalForm");
+      const internalForm = document.getElementById("internalForm");
+      const externalTab = document.getElementById("externalFormTab");
+      const internalTab = document.getElementById("internalFormTab");
+      const tabIndicator = document.getElementById("tabIndicator");
+
+      if (formType === "external") {
+        externalForm.classList.remove("hidden");
+        internalForm.classList.add("hidden");
+        externalTab.classList.add("active");
+        internalTab.classList.remove("active");
+        tabIndicator.style.transform = "translateX(0)";
+      } else {
+        internalForm.classList.remove("hidden");
+        externalForm.classList.add("hidden");
+        internalTab.classList.add("active");
+        externalTab.classList.remove("active");
+        tabIndicator.style.transform = "translateX(100%)";
+      }
+    }
+
+    // フォーム送信をハンドルする関数
+    async function handleFormSubmit(event, url, formType) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+      const errorMessageDiv = form.querySelector('.error-message');
+
+      // エラーメッセージをクリア
+      errorMessageDiv.innerHTML = '';
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          // 送信完了ページにリダイレクト
+          window.location.href = "/submission-complete/";
+        } else {
+          const errorData = await response.json();
+          console.error('Error Response:', errorData);
+
+          // バックエンドのエラーに応じたメッセージを表示
+          let errorMessage = errorMessages.default;
+          if (errorData.error === 'Invalid name') {
+            errorMessage = errorMessages.name;
+          } else if (errorData.error === 'Invalid email address') {
+            errorMessage = errorMessages.email;
+          } else if (errorData.error === 'Invalid message content') {
+            errorMessage = errorMessages.message;
+          }
+
+          // エラーメッセージをページ内に表示
+          errorMessageDiv.innerHTML = errorMessage;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        // ネットワークエラーや例外のエラーメッセージを表示
+        errorMessageDiv.innerHTML = errorMessages.default;
+      }
+    }
+
+    // 外向けフォームの送信イベントをリッスン
+    document.getElementById('externalFormElement').addEventListener('submit', function (event) {
+      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/external-form', 'external');
+    });
+
+    // ウチ向けフォームの送信イベントをリッスン
+    document.getElementById('internalFormElement').addEventListener('submit', function (event) {
+      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/internal-form', 'internal');
+    });
+  </script>
+  <script
+    src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+    async
+    defer></script>
+{{ end }}
