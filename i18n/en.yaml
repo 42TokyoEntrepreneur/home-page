@@ -56,3 +56,5 @@
   translation: "Submit"
 - id: yourIntraName
   translation: "Your Intra Name"
+- id: formSubmitError
+  translation: "There was an error submitting the form. Please try again."

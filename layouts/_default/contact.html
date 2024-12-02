@@ -143,61 +143,99 @@
   </div>
 
   <script>
-    function toggleForm(formType) {
-      const externalForm = document.getElementById("externalForm");
-      const internalForm = document.getElementById("internalForm");
-      const externalTab = document.getElementById("externalFormTab");
-      const internalTab = document.getElementById("internalFormTab");
-      const tabIndicator = document.getElementById("tabIndicator");
+    document.addEventListener('DOMContentLoaded', function () {
+      // タブ切り替え機能
+      function toggleForm(formType) {
+        const externalForm = document.getElementById("externalForm");
+        const internalForm = document.getElementById("internalForm");
+        const externalTab = document.getElementById("externalFormTab");
+        const internalTab = document.getElementById("internalFormTab");
+        const tabIndicator = document.getElementById("tabIndicator");
 
-      if (formType === "external") {
-        externalForm.classList.remove("hidden");
-        internalForm.classList.add("hidden");
-        externalTab.classList.add("active");
-        internalTab.classList.remove("active");
-        tabIndicator.style.transform = "translateX(0)";
-      } else {
-        internalForm.classList.remove("hidden");
-        externalForm.classList.add("hidden");
-        internalTab.classList.add("active");
-        externalTab.classList.remove("active");
-        tabIndicator.style.transform = "translateX(100%)";
-      }
-    }
-
-    async function handleFormSubmit(event, url, formType) {
-      event.preventDefault();
-      const form = event.target;
-      const formData = new FormData(form);
-      const errorMessageDiv = form.querySelector('.error-message');
-
-      errorMessageDiv.innerHTML = '';
-
-      try {
-        const response = await fetch(url, {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (response.ok) {
-          window.location.href = "/submission-complete/";
+        if (formType === "external") {
+          if (externalForm && internalForm && externalTab && internalTab && tabIndicator) {
+            externalForm.classList.remove("hidden");
+            internalForm.classList.add("hidden");
+            externalTab.classList.add("active");
+            internalTab.classList.remove("active");
+            tabIndicator.style.transform = "translateX(0)";
+          } else {
+            console.error("Form elements are missing.");
+          }
         } else {
-          const errorData = await response.json();
-          errorMessageDiv.innerHTML = errorData.message || '{{ i18n "formSubmitError" }}';
+          if (externalForm && internalForm && externalTab && internalTab && tabIndicator) {
+            internalForm.classList.remove("hidden");
+            externalForm.classList.add("hidden");
+            internalTab.classList.add("active");
+            externalTab.classList.remove("active");
+            tabIndicator.style.transform = "translateX(100%)";
+          } else {
+            console.error("Form elements are missing.");
+          }
         }
-      } catch (error) {
-        errorMessageDiv.innerHTML = '{{ i18n "formSubmitError" }}';
       }
-    }
 
-    document.getElementById('externalFormElement').addEventListener('submit', function (event) {
-      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/external-form', 'external');
-    });
+      // フォーム送信処理
+      async function handleFormSubmit(event, url, formType) {
+        event.preventDefault();
+        const form = event.target;
+        const formData = new FormData(form);
+        const errorMessageDiv = form.querySelector('.error-message');
 
-    document.getElementById('internalFormElement').addEventListener('submit', function (event) {
-      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/internal-form', 'internal');
+        if (!errorMessageDiv) {
+          console.error("Error message element is missing.");
+          return;
+        }
+
+        errorMessageDiv.innerHTML = '';
+
+        try {
+          const response = await fetch(url, {
+            method: 'POST',
+            body: formData,
+          });
+
+          if (response.ok) {
+            // Googleタグマネージャーイベント送信
+            if (typeof dataLayer !== 'undefined') {
+              dataLayer.push({
+                event: 'formSubmission',
+                formType: formType,
+              });
+            }
+            window.location.href = "/submission-complete/";
+          } else {
+            const errorData = await response.json();
+            errorMessageDiv.innerHTML = errorData.error || '{{ i18n "formSubmitError" }}';
+          }
+        } catch (error) {
+          console.error("Error during form submission:", error);
+          errorMessageDiv.innerHTML = '{{ i18n "formSubmitError" }}';
+        }
+      }
+
+      // 外向けフォームイベント登録
+      const externalFormElement = document.getElementById('externalFormElement');
+      if (externalFormElement) {
+        externalFormElement.addEventListener('submit', function (event) {
+          handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/external-form', 'external');
+        });
+      } else {
+        console.error("'externalFormElement' is missing.");
+      }
+
+      // 内向けフォームイベント登録
+      const internalFormElement = document.getElementById('internalFormElement');
+      if (internalFormElement) {
+        internalFormElement.addEventListener('submit', function (event) {
+          handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/internal-form', 'internal');
+        });
+      } else {
+        console.error("'internalFormElement' is missing.");
+      }
     });
   </script>
+
   <script
     src="https://challenges.cloudflare.com/turnstile/v0/api.js"
     async

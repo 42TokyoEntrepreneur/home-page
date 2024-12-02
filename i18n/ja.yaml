@@ -56,3 +56,5 @@
   translation: "送信"
 - id: yourIntraName
   translation: "イントラ名"
+- id: formSubmitError
+  translation: "送信エラーが発生しました。再度お試しください。"
