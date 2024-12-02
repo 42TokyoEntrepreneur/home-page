@@ -196,7 +196,7 @@
           });
 
           if (response.ok) {
-            // Googleタグマネージャーイベント送信
+            errorMessageDiv.innerHTML = '';
             if (typeof dataLayer !== 'undefined') {
               dataLayer.push({
                 event: 'formSubmission',
