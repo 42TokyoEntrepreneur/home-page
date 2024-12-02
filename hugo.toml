@@ -2,29 +2,38 @@ baseURL = "https://entrepreneur.42tokyo.jp/"
 languageCode = "ja"
 defaultContentLanguage = "ja"
 defaultContentLanguageInSubdir = false
-
 title = "42 Tokyo 起業部公式サイト"
 
 [languages]
   [languages.ja]
     languageName = "日本語"
     params.lang = "ja"
+    weight = 1
+    contentDir = "content"
 
   [languages.en]
     languageName = "English"
     params.lang = "en"
+    weight = 2
+    contentDir = "content/en"
 
   [languages.fr]
     languageName = "Français"
     params.lang = "fr"
+    weight = 3
+    contentDir = "content/fr"
 
 [params]
   description = "42 Tokyo 起業部の公式サイトです。"
   author = "42 Tokyo 起業部"
   dateFormat = "2006-01-02"
+  keywords = ["42 Tokyo", "起業部", "起業", "スタートアップ", "42"]
+  twitterHandle = "@42tokyo"
+  githubRepo = "https://github.com/42Tokyo/"
 
 [permalinks]
   project = "/project/:sections/:slug/"
+  post = "/:year/:month/:title/"
 
 [markup]
   [markup.goldmark]
@@ -34,8 +43,12 @@ title = "42 Tokyo 起業部公式サイト"
 [security]
   [security.funcs]
     getenv = ['^HUGO_', '^CI$', '^TRUSTSITE_ID$']
+  [security.http]
+    methods = ["GET", "HEAD"]
 
 [sitemap]
   filename = "sitemap.xml"
   changefreq = "daily"
-  priority = 0.5
+  priority = 0.7
+  exclude = ["draft", "private"]
+
