@@ -68,7 +68,7 @@
         <div class="mb-6">
           <div
             class="cf-turnstile mx-auto sm:scale-100 sm:max-w-none scale-75 max-w-[85%]"
-            data-sitekey="0x4AAAAAAA1CvB0_U0AJqJHN"></div>
+            data-sitekey="{{ getenv "TRUSTSITE_ID" }}"></div>
         </div>
         <button type="submit" class="w-full px-4 py-2 btn btn-primary">
           {{ i18n "submitButton" }}
@@ -127,7 +127,7 @@
         <div class="mb-6">
           <div
             class="cf-turnstile mx-auto sm:scale-100 sm:max-w-none scale-75 max-w-[85%]"
-            data-sitekey="0x4AAAAAAA1CvB0_U0AJqJHN"></div>
+            data-sitekey="{{ getenv "TRUSTSITE_ID" }}"></div>
         </div>
         <button type="submit" class="w-full px-4 py-2 btn btn-primary">
           {{ i18n "submitButton" }}
@@ -159,52 +159,48 @@
       }
     }
 
-     // フォーム送信をハンドルする関数
-  async function handleFormSubmit(event, url, formType) {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
+    // フォーム送信をハンドルする関数
+    async function handleFormSubmit(event, url, formType) {
+      event.preventDefault();
+      const form = event.target;
+      const formData = new FormData(form);
+      const errorMessageDiv = form.querySelector('.error-message');
 
-    // データの送信をFormDataで行う
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        body: formData,
-      });
+      // エラーメッセージをクリア
+      errorMessageDiv.innerHTML = '';
 
-      if (response.ok) {
-        alert('{{ i18n "formSubmitted" }}');
-        form.reset();
-      } else {
-        const errorData = await response.json();
-        console.error('Error Response:', errorData);
-        alert('{{ i18n "formSubmitError" }}');
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok) {
+          // 送信完了ページにリダイレクト
+          window.location.href = "/submission-complete/";
+        } else {
+          const errorData = await response.json();
+          console.error('Error Response:', errorData);
+          // エラーメッセージをページ内に表示
+          errorMessageDiv.innerHTML = errorData.message || '{{ i18n "formSubmitError" }}';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        // エラーメッセージをページ内に表示
+        errorMessageDiv.innerHTML = '{{ i18n "formSubmitError" }}';
       }
-    } catch (error) {
-      console.error('Error:', error);
-      alert('{{ i18n "formSubmitError" }}');
     }
-  }
 
-  // 外向けフォームの送信イベントをリッスン
-  document.getElementById('externalFormElement').addEventListener('submit', function (event) {
-    handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/external-form', 'external');
-  });
+    // 外向けフォームの送信イベントをリッスン
+    document.getElementById('externalFormElement').addEventListener('submit', function (event) {
+      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/external-form', 'external');
+    });
 
-  // ウチ向けフォームの送信イベントをリッスン
-  document.getElementById('internalFormElement').addEventListener('submit', function (event) {
-    handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/internal-form', 'internal');
-  });
-
-  document.getElementById('externalFormElement').addEventListener('submit', function (event) {
-    event.preventDefault();
-    const formData = new FormData(event.target);
-
-    console.log('Form Data:', Array.from(formData.entries()));
-
-    handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/external-form', 'external');
-  });
-</script>
+    // ウチ向けフォームの送信イベントをリッスン
+    document.getElementById('internalFormElement').addEventListener('submit', function (event) {
+      handleFormSubmit(event, 'https://contact-form-backend.wakamiya626.workers.dev/internal-form', 'internal');
+    });
+  </script>
   <script
     src="https://challenges.cloudflare.com/turnstile/v0/api.js"
     async
