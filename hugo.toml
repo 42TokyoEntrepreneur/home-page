@@ -6,18 +6,21 @@ title = "42 Tokyo 起業部公式サイト"
 
 [languages]
   [languages.ja]
+    filename = "sitemap.xml"
     languageName = "日本語"
     params.lang = "ja"
     weight = 1
     contentDir = "content"
 
   [languages.en]
+    filename = "sitemap.xml"
     languageName = "English"
     params.lang = "en"
     weight = 2
     contentDir = "content/en"
 
   [languages.fr]
+    filename = "sitemap.xml"
     languageName = "Français"
     params.lang = "fr"
     weight = 3
