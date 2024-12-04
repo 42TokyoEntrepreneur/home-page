@@ -6,25 +6,28 @@ title = "42 Tokyo 起業部公式サイト"
 
 [languages]
   [languages.ja]
-    filename = "sitemap.xml"
     languageName = "日本語"
-    params.lang = "ja"
     weight = 1
     contentDir = "content"
+    [languages.ja.params]
+      lang = "ja"
+      filename = "sitemap.xml"
 
   [languages.en]
-    filename = "sitemap.xml"
     languageName = "English"
-    params.lang = "en"
     weight = 2
     contentDir = "content/en"
+    [languages.en.params]
+      lang = "en"
+      filename = "sitemap.xml"
 
   [languages.fr]
-    filename = "sitemap.xml"
     languageName = "Français"
-    params.lang = "fr"
     weight = 3
     contentDir = "content/fr"
+    [languages.fr.params]
+      lang = "fr"
+      filename = "sitemap.xml"
 
 [params]
   description = "42 Tokyo 起業部の公式サイトです。"
@@ -54,4 +57,3 @@ title = "42 Tokyo 起業部公式サイト"
   changefreq = "daily"
   priority = 0.7
   exclude = ["draft", "private"]
-
