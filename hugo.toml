@@ -35,7 +35,7 @@ title = "42 Tokyo 起業部公式サイト"
   githubRepo = "https://github.com/42Tokyo/"
 
 [permalinks]
-  project = "/project/:sections/:slug/"
+  project = "/:sections/:slug/"
   post = "/:year/:month/:title/"
 
 [markup]
