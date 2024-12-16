@@ -30,8 +30,6 @@
   translation: "お問い合わせ"
 - id: contactMessage
   translation: "起業部に関するご質問やご相談は、お気軽にお問い合わせください。"
-- id: contactButton
-  translation: "メールでお問い合わせ"
 - id: members
   translation: "メンバー"
 - id: contactUs
