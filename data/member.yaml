@@ -1,7 +1,30 @@
 members:
-  - name: 'Test Member'
-    role: 'Test'
-    bio: 'Test'
-    image: 'https://avatars.githubusercontent.com/u/139568922?v=4'
-    github: 'https://github.com/small-engineer'
-    twitter: 'https://x.com/WakamiyaYuma'
+  - name: "栗田虎太朗"
+    role: "代表/事務局"
+    image: "https://avatars.githubusercontent.com/u/93181600?v=4"
+    github: "https://github.com/HINOKAGUZUTI"
+    twitter: "https://x.com/hinokagu_"
+  - name: "Geonwoo Kim"
+    role: "事務局"
+    bio: "Hello, my name is Geonwoo Kim, I'm currently developing a Machine Learning program with Python and Django and Vue.js, Flutter, Spring, and Pytorch, Kotlin"
+    image: "https://avatars.githubusercontent.com/u/48337874?v=4"
+    github: "https://github.com/small-engineer"
+  - name: "龍竹一生"
+    role: "事務局"
+    image: "https://avatars.githubusercontent.com/u/69094508?v=4"
+    github: "https://github.com/T-Kisaku"
+  - name: "若宮佑真"
+    role: "事務局"
+    bio: "当サイト開発"
+    image: "https://avatars.githubusercontent.com/u/139568922?v=4"
+    web: "https://www.small-engineer.net"
+    github: "https://github.com/small-engineer"
+    twitter: "https://x.com/WakamiyaYuma"
+  - name: "市川太陽"
+    image: "https://avatars.githubusercontent.com/u/178145756?v=4"
+    github: "https://github.com/hikaccha"
+  - name: "坪拓磨"
+    bio: "元々スマホアプリのゲームを作ってました。カカポが好き。ファミコン好きなので、ピコピコ音、ドット絵なんかも下手の横好きで描いたり作ったり…得意な言語はPythonです。C言語も最近楽しくなってきました。"
+    image: "/images/tubo.png"
+    github: "https://github.com/cacapon"
+    web: "https://cacapon-labs.cacapon-project.net"
